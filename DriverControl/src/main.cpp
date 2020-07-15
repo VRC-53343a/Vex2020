@@ -1,3 +1,53 @@
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// topLeft              motor         1
+// bottomLeft           motor         2
+// topRight             motor         3
+// bottomRight          motor         4
+// intakeLeft           motor         5
+// intakeRight          motor         6
+// intakeRoller         motor         7
+// flywheel             motor         8
+// Controller1          controller
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// topLeft              motor         1
+// bottomLeft           motor         2
+// topRight             motor         3
+// bottomRight          motor         4
+// intakeLeft           motor         5
+// intakeRight          motor         6
+// intakeRoller         motor         7
+// flywheel             motor         8
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// topLeft              motor         1
+// bottomLeft           motor         2
+// topRight             motor         3
+// bottomRight          motor         4
+// intakeLeft           motor         5
+// intakeRight          motor         6
+// intakeRoller         motor         7
+// flywheel             motor         8
+// Controller1          controller
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// topLeft              motor         1
+// bottomLeft           motor         2
+// topRight             motor         3
+// bottomRight          motor         4
+// intakeLeft           motor         5
+// intakeRight          motor         6
+// intakeRoller         motor         7
+// flywheel             motor         8
+// ---- END VEXCODE CONFIGURED DEVICES ----
 /*----------------------------------------------------------------------------*/
 /*                                                                            */
 /*    Module:       main.cpp                                                  */
@@ -10,18 +60,22 @@
 // ---- START VEXCODE CONFIGURED DEVICES ----
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
-// Controller1          controller                    
-// topLeft              motor         1               
-// bottomLeft           motor         2               
-// topRight             motor         3               
-// bottomRight          motor         4               
-// intakeLeft           motor         5               
-// intakeRight          motor         6               
-// intakeRoller         motor         7               
-// flywheel             motor         8               
+// Controller1          controller
+// topLeft              motor         1
+// bottomLeft           motor         2
+// topRight             motor         3
+// bottomRight          motor         4
+// intakeLeft           motor         5
+// intakeRight          motor         6
+// intakeRoller         motor         7
+// flywheel             motor         8
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
+#include <cmath>
+#include <map>
+
+#define PI 3.14159265
 
 using namespace vex;
 
@@ -76,7 +130,9 @@ void autonomous(void) {
 
 void usercontrol(void) {
   // User control code here, inside the loop
-  while (1) {
+  std::map <std::pair<int, int>, float> quadrant; 
+  quadrant[{1, 1}] = 1; quadrant[{0, 1}] = 2; quadrant[{0, 0}] = 3; quadrant[{1, 0}] = 4; 
+  while (true) {
     // This is the main execution loop for the user control program.
     // Each time through the loop your program should update motor + servo
     // values based on feedback from the joysticks.
@@ -88,6 +144,24 @@ void usercontrol(void) {
 
     wait(20, msec); // Sleep the task for a short amount of time to
                     // prevent wasted resources.
+
+    std::pair<float, float> strafeAxes (Controller1.Axis4.position(percent),
+                                        Controller1.Axis3.position(percent));
+    int strafeQuadrant = quadrant[{strafeAxes.first < 0 ? 0: 1, strafeAxes.second < 0 ? 0: 1}];
+
+    float strafeHeading;
+    if (strafeQuadrant == 1 || strafeQuadrant == 3) {
+      strafeHeading = fabs(atan(strafeAxes.second / strafeAxes.first)) + ((strafeQuadrant-1)*(PI/2));
+    } else {
+      strafeHeading = fabs(atan(strafeAxes.first / strafeAxes.second)) + ((strafeQuadrant-1)*(PI/2));
+    }
+
+    float strafeMagnitude = sqrt(pow(strafeAxes.first, 2) + pow(strafeAxes.second, 2));
+
+    float fl = round(strafeMagnitude * cos((3 * PI / 4) + strafeHeading)); // front left
+    float fr = round(strafeMagnitude * cos ((3 * PI / 4) - strafeHeading)); // front right
+    float bl = round((-1 * strafeMagnitude) * cos((3 * PI / 4) - strafeHeading)); // back left 
+    float br = round((-1 * strafeMagnitude) * cos ((3 * PI / 4) + strafeHeading)); // back right
   }
 }
 
