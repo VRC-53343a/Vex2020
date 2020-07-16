@@ -11,43 +11,6 @@
 // flywheel             motor         8
 // Controller1          controller
 // ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// topLeft              motor         1
-// bottomLeft           motor         2
-// topRight             motor         3
-// bottomRight          motor         4
-// intakeLeft           motor         5
-// intakeRight          motor         6
-// intakeRoller         motor         7
-// flywheel             motor         8
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// topLeft              motor         1
-// bottomLeft           motor         2
-// topRight             motor         3
-// bottomRight          motor         4
-// intakeLeft           motor         5
-// intakeRight          motor         6
-// intakeRoller         motor         7
-// flywheel             motor         8
-// Controller1          controller
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// topLeft              motor         1
-// bottomLeft           motor         2
-// topRight             motor         3
-// bottomRight          motor         4
-// intakeLeft           motor         5
-// intakeRight          motor         6
-// intakeRoller         motor         7
-// flywheel             motor         8
-// ---- END VEXCODE CONFIGURED DEVICES ----
 /*----------------------------------------------------------------------------*/
 /*                                                                            */
 /*    Module:       main.cpp                                                  */
@@ -57,19 +20,6 @@
 /*                                                                            */
 /*----------------------------------------------------------------------------*/
 
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Controller1          controller
-// topLeft              motor         1
-// bottomLeft           motor         2
-// topRight             motor         3
-// bottomRight          motor         4
-// intakeLeft           motor         5
-// intakeRight          motor         6
-// intakeRoller         motor         7
-// flywheel             motor         8
-// ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
 #include <cmath>
@@ -88,7 +38,6 @@ void pre_auton(void) {
   vexcodeInit();
 
 }
-
 
 
 void autonomous(void) {
