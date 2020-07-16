@@ -31,14 +31,37 @@ using namespace vex;
 
 competition Competition;
 
-// define your global instances of motors and other devices here
+std::map <std::pair<int, int>, float> quadrant; 
+
+float * strafeMotorValues (std::pair<float, float> axes) {
+  int strafeQuadrant = quadrant[{axes.first < 0 ? 0: 1, axes.second < 0 ? 0: 1}];
+
+  float strafeHeading;
+  if (strafeQuadrant == 1 || strafeQuadrant == 3) {
+    strafeHeading = fabs(atan(axes.second / axes.first))
+                      + ((strafeQuadrant-1)*(PI/2));
+  } else {
+    strafeHeading = fabs(atan(axes.first / axes.second)) 
+                      + ((strafeQuadrant-1)*(PI/2));
+  }
+
+  float strafeMagnitude = sqrt(pow(axes.first, 2) + pow(axes.second, 2));
+
+  float motorValues[4] = {
+    static_cast<float>(round(strafeMagnitude * cos((3 * PI / 4) + strafeHeading))), // front left
+    static_cast<float>(round(strafeMagnitude * cos ((3 * PI / 4) - strafeHeading))), // front right
+    static_cast<float>(round((-1 * strafeMagnitude) * cos((3 * PI / 4) - strafeHeading))), // back left 
+    static_cast<float>(round((-1 * strafeMagnitude) * cos ((3 * PI / 4) + strafeHeading))) // back right
+  };
+
+  return motorValues;
+}
 
 void pre_auton(void) {
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
-
+  quadrant[{1, 1}] = 1; quadrant[{0, 1}] = 2; quadrant[{0, 0}] = 3; quadrant[{1, 0}] = 4; 
 }
-
 
 void autonomous(void) {
   // ..........................................................................
@@ -48,31 +71,13 @@ void autonomous(void) {
 
 
 void usercontrol(void) {
-  std::map <std::pair<int, int>, float> quadrant; 
-  quadrant[{1, 1}] = 1; quadrant[{0, 1}] = 2; quadrant[{0, 0}] = 3; quadrant[{1, 0}] = 4; 
   
   while (true) {
     wait(20, msec);
 
     std::pair<float, float> strafeAxes (Controller1.Axis4.position(percent),
                                         Controller1.Axis3.position(percent));
-    int strafeQuadrant = quadrant[{strafeAxes.first < 0 ? 0: 1, strafeAxes.second < 0 ? 0: 1}];
-
-    float strafeHeading;
-    if (strafeQuadrant == 1 || strafeQuadrant == 3) {
-      strafeHeading = fabs(atan(strafeAxes.second / strafeAxes.first))
-                        + ((strafeQuadrant-1)*(PI/2));
-    } else {
-      strafeHeading = fabs(atan(strafeAxes.first / strafeAxes.second)) 
-                        + ((strafeQuadrant-1)*(PI/2));
-    }
-
-    float strafeMagnitude = sqrt(pow(strafeAxes.first, 2) + pow(strafeAxes.second, 2));
-
-    float fl = round(strafeMagnitude * cos((3 * PI / 4) + strafeHeading)); // front left
-    float fr = round(strafeMagnitude * cos ((3 * PI / 4) - strafeHeading)); // front right
-    float bl = round((-1 * strafeMagnitude) * cos((3 * PI / 4) - strafeHeading)); // back left 
-    float br = round((-1 * strafeMagnitude) * cos ((3 * PI / 4) + strafeHeading)); // back right
+    
   }
 }
 
