@@ -34,6 +34,9 @@ competition Competition;
 std::map <std::pair<int, int>, float> quadrant; 
 
 float * strafeMotorValues (std::pair<float, float> axes) {
+  // TODO: justify max motor values to 100
+  // use static multiplier or some fancy algebra idgaf
+
   int strafeQuadrant = quadrant[{axes.first < 0 ? 0: 1, axes.second < 0 ? 0: 1}];
 
   float strafeHeading;
@@ -47,7 +50,7 @@ float * strafeMotorValues (std::pair<float, float> axes) {
 
   float strafeMagnitude = sqrt(pow(axes.first, 2) + pow(axes.second, 2));
 
-  float motorValues[4] = {
+  float * motorValues = new float[4] {
     static_cast<float>(round(strafeMagnitude * cos((3 * PI / 4) + strafeHeading))), // front left
     static_cast<float>(round(strafeMagnitude * cos ((3 * PI / 4) - strafeHeading))), // front right
     static_cast<float>(round((-1 * strafeMagnitude) * cos((3 * PI / 4) - strafeHeading))), // back left 
@@ -77,7 +80,13 @@ void usercontrol(void) {
 
     std::pair<float, float> strafeAxes (Controller1.Axis4.position(percent),
                                         Controller1.Axis3.position(percent));
-    
+
+    float * motorVals = strafeMotorValues(strafeAxes);
+
+    topLeft.spin(directionType::fwd, *(motorVals), velocityUnits::pct);
+    topRight.spin(directionType::fwd, *(motorVals + 1), velocityUnits::pct);
+    bottomLeft.spin(directionType::fwd, *(motorVals + 2), velocityUnits::pct);
+    bottomRight.spin(directionType::fwd, *(motorVals + 3), velocityUnits::pct);
   }
 }
 
