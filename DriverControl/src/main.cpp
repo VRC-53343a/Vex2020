@@ -75,6 +75,8 @@ void autonomous(void) {
 
 void usercontrol(void) {
   
+  int intakeSpeed = 100;
+  int flywheelSpeed = 100;
   while (true) {
     wait(20, msec);
 
@@ -87,6 +89,30 @@ void usercontrol(void) {
     topRight.spin(directionType::fwd, *(motorVals + 1), velocityUnits::pct);
     bottomLeft.spin(directionType::fwd, *(motorVals + 2), velocityUnits::pct);
     bottomRight.spin(directionType::fwd, *(motorVals + 3), velocityUnits::pct);
+
+    if(Controller1.ButtonR2.pressing()) {
+            intakeLeft.spin(directionType::rev, intakeSpeed, velocityUnits::pct);
+            intakeRight.spin(directionType::fwd, intakeSpeed, velocityUnits::pct);
+            intakeRoller.spin(directionType::fwd, intakeSpeed, velocityUnits::pct);
+        }
+    else if(Controller1.ButtonDown.pressing()) {
+            intakeLeft.spin(directionType::fwd, intakeSpeed, velocityUnits::pct);
+            intakeRight.spin(directionType::rev, intakeSpeed, velocityUnits::pct);
+            intakeRoller.spin(directionType::rev, intakeSpeed, velocityUnits::pct);
+        }
+    else {
+            intakeLeft.stop(brakeType::brake);
+            intakeRight.stop(brakeType::brake);
+            intakeRoller.stop(brakeType::brake);
+        }
+
+    if(Controller1.ButtonR1.pressing()) {
+            flywheel.spin(directionType::fwd, flywheelSpeed, velocityUnits::pct);
+        }
+    else {
+            flywheel.stop(brakeType::brake);        
+        }
+
   }
 }
 
@@ -106,3 +132,6 @@ int main() {
     wait(100, msec);
   }
 }
+
+
+    
