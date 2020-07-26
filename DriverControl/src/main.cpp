@@ -54,7 +54,11 @@ void right_strafe(int v, int d){
   
 }
 
-void turning(int v, int d){
+void turningRight(int v, int d){
+
+}
+
+void turningLeft(int v, int d){
   
 }
 
