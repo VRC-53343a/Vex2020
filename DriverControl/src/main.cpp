@@ -34,6 +34,29 @@ competition Competition;
 std::map <std::pair<int, int>, float> quadrant; 
 
 
+void forward(int v, int d){
+
+}
+
+void backward(int v, int d){
+
+}
+
+void turn90(void){
+
+}
+
+void left_strafe(int v, int d){
+
+}
+
+void right_strafe(int v, int d){
+  
+}
+
+void turning(int v, int d){
+  
+}
 
 void pre_auton(void) {
   // Initializing Robot Configuration. DO NOT REMOVE!
