@@ -72,8 +72,8 @@
 /*                                                                            */
 /*----------------------------------------------------------------------------*/
 
-
 #include "vex.h"
+#include <iostream>
 #include <cmath>
 #include <map>
 
@@ -84,41 +84,37 @@ using namespace vex;
 
 competition Competition;
 
-std::map <std::pair<int, int>, float> quadrant; 
-
-
-void forward(int v, int d){
-
+void vertical(double v, double d){
+  topLeft.rotateTo(d, rotationUnits::deg, v, velocityUnits::pct, false);
+  bottomLeft.rotateTo(d, rotationUnits::deg, v, velocityUnits::pct, false);
+  topRight.rotateTo(d, rotationUnits::deg, v, velocityUnits::pct, false);
+  bottomRight.rotateTo(d, rotationUnits::deg,v, velocityUnits::pct, true);
 }
 
-void backward(int v, int d){
-
+void turn90(int dir){
+  topLeft.rotateTo(dir * 90, rotationUnits::deg, false);
+  topRight.rotateTo(-1 * dir * 90, rotationUnits::deg, false);
+  bottomLeft.rotateTo(dir * 90, rotationUnits::deg, false);
+  bottomRight.rotateTo(-1 * dir * 90, rotationUnits::deg, true);
 }
 
-void turn90(void){
-
+void left_strafe(float v, float d){
+  topLeft.rotateTo(-1 * d, rotationUnits::deg, v, velocityUnits::pct, false);
+  topRight.rotateTo(d, rotationUnits::deg, v, velocityUnits::pct, false);
+  bottomLeft.rotateTo(d, rotationUnits::deg, v, velocityUnits::pct, false);
+  bottomRight.rotateTo(-1 * d, rotationUnits::deg, v, velocityUnits::pct, true);
 }
 
-void left_strafe(int v, int d){
-
-}
-
-void right_strafe(int v, int d){
-  
-}
-
-void turningRight(int v, int d){
-
-}
-
-void turningLeft(int v, int d){
-  
+void right_strafe(float v, float d){
+  topLeft.rotateTo(d, rotationUnits::deg, v, velocityUnits::pct, false);
+  topRight.rotateTo(-1 * d, rotationUnits::deg, v, velocityUnits::pct, false);
+  bottomLeft.rotateTo(-1 * d, rotationUnits::deg, v, velocityUnits::pct, false);
+  bottomRight.rotateTo(d, rotationUnits::deg, v, velocityUnits::pct, true);
 }
 
 void pre_auton(void) {
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
-  quadrant[{1, 1}] = 1; quadrant[{0, 1}] = 2; quadrant[{0, 0}] = 3; quadrant[{1, 0}] = 4; 
 }
 
 void autonomous(void) {
@@ -129,9 +125,9 @@ void autonomous(void) {
 
 
 void usercontrol(void) {
-  
   int intakeSpeed = 100;
   int flywheelSpeed = 100;
+
   while (true) {
     wait(20, msec);
     double front_left  = (double)(Controller1.Axis3.position(pct) + Controller1.Axis4.position(pct));
@@ -176,8 +172,6 @@ void usercontrol(void) {
     topRight.spin(fwd,front_right,velocityUnits::pct);
     bottomRight.spin(fwd,back_right, velocityUnits::pct);
 
-
-
     if (Controller1.ButtonR2.pressing()) {
       intakeLeft.spin(directionType::rev, intakeSpeed, velocityUnits::pct);
       intakeRight.spin(directionType::fwd, intakeSpeed, velocityUnits::pct);
@@ -195,12 +189,16 @@ void usercontrol(void) {
     }
 
     if(Controller1.ButtonR1.pressing()) {
-            flywheel.spin(directionType::fwd, flywheelSpeed, velocityUnits::pct);
+      flywheel.spin(directionType::fwd, flywheelSpeed, velocityUnits::pct);
     } else {
-            flywheel.stop(brakeType::brake);        
+      flywheel.stop(brakeType::brake);        
     }
 
-   
+    if (Controller1.ButtonX.pressing()){
+      // vertical(100, 720);
+      // vertical(100, -720);
+      left_strafe(100, 360);
+    }
 
   }
 }
