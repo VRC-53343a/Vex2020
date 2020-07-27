@@ -1,3 +1,4 @@
+  
 // ---- START VEXCODE CONFIGURED DEVICES ----
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
@@ -78,11 +79,14 @@
 #include <map>
 
 #define PI 3.14159265
-#define TURN_MULT 0.75
+#define TURN_MULT 0.6
 
 using namespace vex;
 
 competition Competition;
+
+int clm = 1;
+bool conf = false;
 
 void vertical(double v, double d){
   topLeft.rotateTo(d, rotationUnits::deg, v, velocityUnits::pct, false);
@@ -115,12 +119,91 @@ void right_strafe(float v, float d){
 void pre_auton(void) {
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
+
+  while (conf == false) {
+if (Controller1.ButtonUp.pressing() && clm < 8 && conf == false) {
+clm++;
+}  else if (Controller1.ButtonDown.pressing() && clm > 1 && conf == false) {
+clm--;
+} else {
+}
+while (conf == false) {
+if (Controller1.ButtonUp.pressing() && clm < 8 && conf == false) {
+clm++;
+} else if (Controller1.ButtonDown.pressing() && clm > 1 && conf == false) {
+clm--;
+} else {
+}
+
+if (clm == 1) {
+Controller1.Screen.clearScreen();
+Controller1.Screen.newLine();
+Controller1.Screen.print("1");
+
+} else if (clm == 2) {
+Controller1.Screen.clearScreen();
+Controller1.Screen.newLine();
+Controller1.Screen.print("2");
+
+Controller1.Screen.clearScreen();
+Controller1.Screen.newLine();
+Controller1.Screen.print("3");
+
+} else if (clm == 4) {
+Controller1.Screen.clearScreen();
+Controller1.Screen.newLine();
+Controller1.Screen.print("4");
+
+} else if (clm == 5) {
+Controller1.Screen.clearScreen();
+Controller1.Screen.newLine();
+Controller1.Screen.print("5");
+
+} else if (clm == 6) {
+Controller1.Screen.clearScreen();
+Controller1.Screen.newLine();
+Controller1.Screen.print("6");
+
+Controller1.Screen.newLine();
+Controller1.Screen.print("7");
+
+}
+else if (clm == 7) {
+Controller1.Screen.newLine();
+Controller1.Screen.print("8");
+
+} else {
+}
+
+if (Controller1.ButtonA.pressing()) {
+conf = true;
+Controller1.Screen.clearScreen();
+Controller1.Screen.newLine();
+Controller1.Screen.print("locked");
+Controller1.rumble("...");
+}else {
+}
+}
+}
 }
 
 void autonomous(void) {
   // ..........................................................................
   // Insert autonomous user code here.
   // ..........................................................................
+
+  if (clm == 1) {
+// run auton 1
+} else if (clm == 2) {
+// run auton 2
+} else if (clm == 3) {
+// run auton 3
+} else if (clm == 4) {
+// run auton 4
+} else if (clm == 5) {
+// run auton 5
+}
+
 }
 
 
@@ -219,6 +302,3 @@ int main() {
     wait(100, msec);
   }
 }
-
-
-    
