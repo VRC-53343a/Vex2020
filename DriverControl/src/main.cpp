@@ -141,16 +141,43 @@ void autonomous(void) {
  
  if (clm == 1) {
 // run auton 1
+// red left side 2 goal auton
+
+/* 
+move forward
+turn left 90
+move forward toward the goal
+turn x degrees so facing the goal
+intake red ball there
+run a full cycle of intake + indexer + flywheel(will score two red balls and intake the blue)
+turn -x degrees 
+strafe left while outtaking the blue ball
+move forward into the goal
+do another full cycle scoring 2 balls and then intaking the blue ball
+  */
+
 } else if (clm == 2) {
 // run auton 2
+// red right side 2 goal auton 
+
 } else if (clm == 3) {
 // run auton 3
+// red side 3 goal auton
+
 } else if (clm == 4) {
 // run auton 4
+// blue left side 2 goal auton
+
 } else if (clm == 5) {
 // run auton 5
+// blue left side 2 goal auton
+
+} else if (clm == 6) {
+// run auton 6
+// blue side 3 goal auton
+
 }
- 
+
 }
  
  
