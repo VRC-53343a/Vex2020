@@ -23,10 +23,14 @@
 #include "vex.h"
 #include <cmath>
 #include <iostream>
+#include <iomanip>
 #include <map>
+#include <string>
+#include <sstream>
  
 #define PI 3.14159265
 #define TURN_MULT 0.6
+#define INCH_MULT 20.25711711353
  
 using namespace vex;
  
@@ -35,11 +39,11 @@ competition Competition;
 int clm = 1;
 bool conf = false;
  
-void vertical(double v, double d) {
-  topLeft.rotateTo(d * 20.25711711353, rotationUnits::deg, v, velocityUnits::pct, false);
-  bottomLeft.rotateTo(d * 20.25711711353, rotationUnits::deg, v, velocityUnits::pct, false);
-  topRight.rotateTo(d * 20.25711711353, rotationUnits::deg, v, velocityUnits::pct, false);
-  bottomRight.rotateTo(d * 20.25711711353, rotationUnits::deg, v, velocityUnits::pct, true);
+void vertical(double v, double inches) {
+  topLeft.rotateTo(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
+  bottomLeft.rotateTo(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
+  topRight.rotateTo(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
+  bottomRight.rotateTo(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, true);
 }
  
 void turn90(double dir) {
@@ -49,18 +53,18 @@ void turn90(double dir) {
   bottomRight.rotateTo(-1 * dir * 90, rotationUnits::deg, true);
 }
  
-void left_strafe(float v, float d) {
-  topLeft.rotateTo(-1 * d * 20.25711711353, rotationUnits::deg, v, velocityUnits::pct, false);
-  topRight.rotateTo(d * 20.25711711353, rotationUnits::deg, v, velocityUnits::pct, false);
-  bottomLeft.rotateTo(d * 20.25711711353, rotationUnits::deg, v, velocityUnits::pct, false);
-  bottomRight.rotateTo(-1 * d * 20.25711711353, rotationUnits::deg, v, velocityUnits::pct, true);
+void left_strafe(double v, double inches) {
+  topLeft.rotateTo(-1 * inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
+  topRight.rotateTo(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
+  bottomLeft.rotateTo(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
+  bottomRight.rotateTo(-1 * inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, true);
 }
  
-void right_strafe(float v, float d) {
-  topLeft.rotateTo(d * 20.25711711353, rotationUnits::deg, v, velocityUnits::pct, false);
-  topRight.rotateTo(-1 * d * 20.25711711353, rotationUnits::deg, v, velocityUnits::pct, false);
-  bottomLeft.rotateTo(-1 * d * 20.25711711353, rotationUnits::deg, v, velocityUnits::pct, false);
-  bottomRight.rotateTo(d * 20.25711711353, rotationUnits::deg, v, velocityUnits::pct, true);
+void right_strafe(double v, double inches) {
+  topLeft.rotateTo(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
+  topRight.rotateTo(-1 * inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
+  bottomLeft.rotateTo(-1 * inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
+  bottomRight.rotateTo(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, true);
 }
  
 void flipout(){
@@ -87,29 +91,20 @@ void pre_auton(void) {
     } else if (Controller1.ButtonDown.pressing() && clm > 1 && conf == false) {
       clm--;
     } 
-
-    while (conf == false) {
-      if (Controller1.ButtonUp.pressing() && clm < 8 && conf == false) {
-        clm++;
-      } else if (Controller1.ButtonDown.pressing() && clm > 1 && conf == false) {
-        clm--;
-      } 
  
-      Controller1.Screen.clearScreen();
-      Controller1.Screen.setCursor(1, 1);
-      Controller1.Screen.newLine();
-      Controller1.Screen.print(clm);
-      Controller1.Screen.newLine();
-      Controller1.Screen.print(Brain.Battery.capacity());
+    Controller1.Screen.clearScreen();
+    Controller1.Screen.setCursor(1, 1);
+    Controller1.Screen.print(clm);
+    Controller1.Screen.newLine();
+    Controller1.Screen.print(Brain.Battery.capacity());
 
-      if (Controller1.ButtonA.pressing()) {
-        conf = true;
-        Controller1.Screen.clearScreen();
-        Controller1.Screen.newLine();
-        Controller1.Screen.print("locked");
-        Controller1.rumble("...");
-      } 
-    }
+    if (Controller1.ButtonY.pressing()) {
+      conf = true;
+      Controller1.Screen.clearScreen();
+      Controller1.Screen.newLine();
+      Controller1.Screen.print("locked");
+      Controller1.rumble(".");
+    } 
   }
 }
  
@@ -207,115 +202,128 @@ void autonomous(void) {
 }
  
 void usercontrol(void) {
- int intakeSpeed = 100;
- int flywheelSpeed = 100;
- double nja_md = 1;
+  int intakeSpeed = 100;
+  int flywheelSpeed = 100;
+  double nja_md = 1;
  
- while (true) {
-   wait(20, msec);
-   double front_left = (double)(Controller1.Axis3.position(pct) +
+  while (true) {
+    wait(20, msec);
+    double front_left = (double)(Controller1.Axis3.position(pct) +
                                 Controller1.Axis4.position(pct));
-   double back_left = (double)(Controller1.Axis3.position(pct) -
+    double back_left = (double)(Controller1.Axis3.position(pct) -
                                Controller1.Axis4.position(pct));
-   double front_right = (double)(Controller1.Axis3.position(pct) -
+    double front_right = (double)(Controller1.Axis3.position(pct) -
                                  Controller1.Axis4.position(pct));
-   double back_right = (double)(Controller1.Axis3.position(pct) +
+    double back_right = (double)(Controller1.Axis3.position(pct) +
                                 Controller1.Axis4.position(pct));
  
    // Find the largest possible sum of X and Y
-   double max_raw_sum = (double)(abs(Controller1.Axis3.position(pct)) +
+    double max_raw_sum = (double)(abs(Controller1.Axis3.position(pct)) +
                                  abs(Controller1.Axis4.position(pct)));
  
-   // Find the largest joystick value
-   double max_XYstick_value =
+    // Find the largest joystick value
+    double max_XYstick_value =
        (double)(std::max(abs(Controller1.Axis3.position(pct)),
                          abs(Controller1.Axis4.position(pct))));
  
-   // The largest sum will be scaled down to the largest joystick value, and
-   // the others will be scaled by the same amount to preserve directionality
-   if (max_raw_sum != 0) {
-     front_left = front_left / max_raw_sum * max_XYstick_value;
-     back_left = back_left / max_raw_sum * max_XYstick_value;
-     front_right = front_right / max_raw_sum * max_XYstick_value;
-     back_right = back_right / max_raw_sum * max_XYstick_value;
-   }
+    // The largest sum will be scaled down to the largest joystick value, and
+    // the others will be scaled by the same amount to preserve directionality
+    if (max_raw_sum != 0) {
+      front_left = front_left / max_raw_sum * max_XYstick_value;
+      back_left = back_left / max_raw_sum * max_XYstick_value;
+      front_right = front_right / max_raw_sum * max_XYstick_value;
+      back_right = back_right / max_raw_sum * max_XYstick_value;
+    }
  
-   // Now to Controller1sider rotation
-   // Naively add the rotational axis
-   front_left = front_left + (TURN_MULT * Controller1.Axis1.position(pct));
-   back_left = back_left + (TURN_MULT * Controller1.Axis1.position(pct));
-   front_right = front_right - (TURN_MULT * Controller1.Axis1.position(pct));
-   back_right = back_right - (TURN_MULT * Controller1.Axis1.position(pct));
+    // Now to Controller1sider rotation
+    // Naively add the rotational axis
+    front_left = front_left + (TURN_MULT * Controller1.Axis1.position(pct));
+    back_left = back_left + (TURN_MULT * Controller1.Axis1.position(pct));
+    front_right = front_right - (TURN_MULT * Controller1.Axis1.position(pct));
+    back_right = back_right - (TURN_MULT * Controller1.Axis1.position(pct));
  
-   // What is the largest sum, or is 100 larger?
-   max_raw_sum =
-       std::max(std::abs(front_left),
+    // What is the largest sum, or is 100 larger?
+    max_raw_sum =
+        std::max(std::abs(front_left),
                 std::max(std::abs(back_left),
                          std::max(std::abs(front_right),
                                   std::max(std::abs(back_right), 100.0))));
  
-   // Scale everything down by the factor that makes the largest only 100, if
-   // it was over
-   front_left = front_left / max_raw_sum * 100.0;
-   back_left = back_left / max_raw_sum * 100.0;
-   front_right = front_right / max_raw_sum * 100.0;
-   back_right = back_right / max_raw_sum * 100.0;
+    // Scale everything down by the factor that makes the largest only 100, if
+    // it was over
+    front_left = front_left / max_raw_sum * 100.0;
+    back_left = back_left / max_raw_sum * 100.0;
+    front_right = front_right / max_raw_sum * 100.0;
+    back_right = back_right / max_raw_sum * 100.0;
  
-   // Write the manipulated values out to the motors
-   topLeft.spin(fwd, front_left * nja_md, velocityUnits::pct);
-   bottomLeft.spin(fwd, back_left * nja_md, velocityUnits::pct);
-   topRight.spin(fwd, front_right * nja_md, velocityUnits::pct);
-   bottomRight.spin(fwd, back_right * nja_md, velocityUnits::pct);
+    // Write the manipulated values out to the motors
+    topLeft.spin(fwd, front_left * nja_md, velocityUnits::pct);
+    bottomLeft.spin(fwd, back_left * nja_md, velocityUnits::pct);
+    topRight.spin(fwd, front_right * nja_md, velocityUnits::pct);
+    bottomRight.spin(fwd, back_right * nja_md, velocityUnits::pct);
  
-   if (Controller1.ButtonR2.pressing()) {
-     intakeLeft.spin(directionType::rev, intakeSpeed, velocityUnits::pct);
-     intakeRight.spin(directionType::fwd, intakeSpeed, velocityUnits::pct);
-     intakeRoller.spin(directionType::fwd, intakeSpeed, velocityUnits::pct);
-   } else if (Controller1.ButtonL2.pressing()) {
-     intakeLeft.spin(directionType::fwd, intakeSpeed, velocityUnits::pct);
-     intakeRight.spin(directionType::rev, intakeSpeed, velocityUnits::pct);
-     intakeRoller.spin(directionType::rev, intakeSpeed, velocityUnits::pct);
-   } else if (Controller1.ButtonL1.pressing()) {
-     intakeRoller.spin(directionType::rev, intakeSpeed, velocityUnits::pct);
-   } else {
-     intakeLeft.stop(brakeType::brake);
-     intakeRight.stop(brakeType::brake);
-     intakeRoller.stop(brakeType::brake);
-   }
+    if (Controller1.ButtonR2.pressing()) {
+      intakeLeft.spin(directionType::rev, intakeSpeed, velocityUnits::pct);
+      intakeRight.spin(directionType::fwd, intakeSpeed, velocityUnits::pct);
+      intakeRoller.spin(directionType::fwd, intakeSpeed, velocityUnits::pct);
+    } else if (Controller1.ButtonL2.pressing()) {
+      intakeLeft.spin(directionType::fwd, intakeSpeed, velocityUnits::pct);
+      intakeRight.spin(directionType::rev, intakeSpeed, velocityUnits::pct);
+      intakeRoller.spin(directionType::rev, intakeSpeed, velocityUnits::pct);
+    } else if (Controller1.ButtonL1.pressing()) {
+      intakeRoller.spin(directionType::rev, intakeSpeed, velocityUnits::pct);
+    } else {
+      intakeLeft.stop(brakeType::brake);
+      intakeRight.stop(brakeType::brake);
+      intakeRoller.stop(brakeType::brake);
+    }
  
-   if (Controller1.ButtonR1.pressing()) {
-     flywheel.spin(directionType::fwd, flywheelSpeed, velocityUnits::pct);
-   } else {
-     flywheel.stop(brakeType::brake);
-   }
+    if (Controller1.ButtonR1.pressing()) {
+      flywheel.spin(directionType::fwd, flywheelSpeed, velocityUnits::pct);
+    } else {
+      flywheel.stop(brakeType::brake);
+    }
  
-   if (Controller1.ButtonX.pressing()) {
-     // vertical(100, 720);
-     // vertical(100, -720);
-     left_strafe(100, 360);
-   } else {
-   }
+    if (Controller1.ButtonX.pressing()) {
+      left_strafe(100, 12);
+    }
  
-    if (Controller1.ButtonA.pressing() && nja_md == 1) {
-      nja_md = 0.5;
-    } else if (Controller1.ButtonA.pressing() && nja_md == 0.5) {
+    if (Controller1.ButtonA.pressing()) {
+      nja_md = 0.3;
+      Controller1.Screen.setCursor(1, 1);
+      Controller1.Screen.print("ninja");
+    } else {
+      Controller1.Screen.clearScreen();
       nja_md = 1;
     }
+
+    std::ostringstream top;
+    std::ostringstream bottom;
+    top << topLeft.current() << " " << topRight.current();
+    bottom << bottomLeft.current() << " " << bottomRight.current();
+
+    // Controller1.Screen.setCursor(2, 1);
+    // Controller1.Screen.print(top);
+    // Controller1.Screen.newLine();
+    // Controller1.Screen.print(bottom);
+    // Controller1.Screen.newLine();
+    // Controller1.Screen.clearScreen();
+  }
 }
  
 //
 // Main will set up the competition functions and callbacks.
 //
 int main() {
- // Set up callbacks for autonomous and driver control periods.
- Competition.autonomous(autonomous);
- Competition.drivercontrol(usercontrol);
- 
- // Run the pre-autonomous function.
- pre_auton();
- 
- // Prevent main from exiting with an infinite loop.
- while (true) {
-   wait(100, msec);
- }
+  // Set up callbacks for autonomous and driver control periods.
+  Competition.autonomous(autonomous);
+  Competition.drivercontrol(usercontrol);
+  
+  // Run the pre-autonomous function.
+  pre_auton();
+  
+  // Prevent main from exiting with an infinite loop.
+  while (true) {
+    wait(100, msec);
+  }
 }
