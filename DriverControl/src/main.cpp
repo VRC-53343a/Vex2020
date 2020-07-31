@@ -30,7 +30,7 @@
  
 #define PI 3.14159265
 #define TURN_MULT 0.6
-#define INCH_MULT 20.25711711353
+#define INCH_MULT 28
  
 using namespace vex;
  
@@ -40,31 +40,31 @@ int clm = 1;
 bool conf = false;
  
 void vertical(double v, double inches) {
-  topLeft.rotateTo(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
-  bottomLeft.rotateTo(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
-  topRight.rotateTo(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
-  bottomRight.rotateTo(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, true);
+  topLeft.rotateFor(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
+  bottomLeft.rotateFor(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
+  topRight.rotateFor(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
+  bottomRight.rotateFor(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, true);
 }
  
-void turn90(double dir) {
-  topLeft.rotateTo(dir * 90, rotationUnits::deg, false);
-  topRight.rotateTo(-1 * dir * 90, rotationUnits::deg, false);
-  bottomLeft.rotateTo(dir * 90, rotationUnits::deg, false);
-  bottomRight.rotateTo(-1 * dir * 90, rotationUnits::deg, true);
+void turn90(double v, double dir) {
+  topLeft.rotateFor(dir * 350, rotationUnits::deg, v, velocityUnits::pct, false);
+  topRight.rotateFor(-1 * dir * 350, rotationUnits::deg, v, velocityUnits::pct, false);
+  bottomLeft.rotateFor(dir * 350, rotationUnits::deg, v, velocityUnits::pct, false);
+  bottomRight.rotateFor(-1 * dir * 350, rotationUnits::deg, v, velocityUnits::pct, true);
 }
  
 void left_strafe(double v, double inches) {
-  topLeft.rotateTo(-1 * inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
-  topRight.rotateTo(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
-  bottomLeft.rotateTo(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
-  bottomRight.rotateTo(-1 * inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, true);
+  topLeft.rotateFor(-1 * inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
+  topRight.rotateFor(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
+  bottomLeft.rotateFor(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
+  bottomRight.rotateFor(-1 * inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, true);
 }
  
 void right_strafe(double v, double inches) {
-  topLeft.rotateTo(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
-  topRight.rotateTo(-1 * inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
-  bottomLeft.rotateTo(-1 * inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
-  bottomRight.rotateTo(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, true);
+  topLeft.rotateFor(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
+  topRight.rotateFor(-1 * inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
+  bottomLeft.rotateFor(-1 * inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
+  bottomRight.rotateFor(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, true);
 }
  
 void flipout(){
@@ -135,7 +135,7 @@ void autonomous(void) {
     intakeRoller.spin(fwd, -100, pct);
     left_strafe(100, 48);
     wait(0.5, timeUnits::sec);
-    turn90(0.5);
+    turn90(100, 0.5);
     intakeRight.spin(fwd, 100, pct);
     intakeLeft.spin(fwd, 100, pct);
     intakeRoller.spin(fwd, 100, pct);
@@ -182,7 +182,7 @@ void autonomous(void) {
     intakeRoller.spin(fwd, -100, pct);
     left_strafe(100, 48);
     wait(0.5, timeUnits::sec);
-    turn90(-0.5);
+    turn90(100, -0.5);
     intakeRight.spin(fwd, 100, pct);
     intakeLeft.spin(fwd, 100, pct);
     intakeRoller.spin(fwd, 100, pct);
@@ -285,7 +285,7 @@ void usercontrol(void) {
     }
  
     if (Controller1.ButtonX.pressing()) {
-      left_strafe(100, 12);
+      vertical(100, 12);
     }
  
     if (Controller1.ButtonA.pressing()) {
@@ -297,17 +297,17 @@ void usercontrol(void) {
       nja_md = 1;
     }
 
-    std::ostringstream top;
-    std::ostringstream bottom;
-    top << topLeft.current() << " " << topRight.current();
-    bottom << bottomLeft.current() << " " << bottomRight.current();
+    std::stringstream top;
+    std::stringstream bottom;
+    top << topLeft.velocity(velocityUnits::pct) << " " << topRight.velocity(velocityUnits::pct);
+    bottom << bottomLeft.velocity(velocityUnits::pct) << " " << bottomRight.velocity(velocityUnits::pct);
 
-    // Controller1.Screen.setCursor(2, 1);
-    // Controller1.Screen.print(top);
-    // Controller1.Screen.newLine();
-    // Controller1.Screen.print(bottom);
-    // Controller1.Screen.newLine();
-    // Controller1.Screen.clearScreen();
+    Controller1.Screen.setCursor(2, 1);
+    Controller1.Screen.print(top.str().c_str());
+    Controller1.Screen.newLine();
+    Controller1.Screen.print(bottom.str().c_str());
+    Controller1.Screen.newLine();
+    Controller1.Screen.clearScreen();
   }
 }
  
