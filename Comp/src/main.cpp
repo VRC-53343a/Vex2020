@@ -1,15 +1,15 @@
 // ---- START VEXCODE CONFIGURED DEVICES ----
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
-// topLeft              motor         1
-// bottomLeft           motor         2
-// topRight             motor         3
-// bottomRight          motor         4
-// intakeLeft           motor         5
-// intakeRight          motor         6
-// intakeRoller         motor         7
-// flywheel             motor         8
-// Controller1          controller
+// topLeft              motor         1               
+// bottomLeft           motor         2               
+// topRight             motor         3               
+// bottomRight          motor         4               
+// intakeLeft           motor         5               
+// intakeRight          motor         6               
+// intakeRoller         motor         7               
+// flywheel             motor         8               
+// Controller1          controller                    
 // ---- END VEXCODE CONFIGURED DEVICES ----
 /*-----------------------------------------------w-----------------------------*/
 /*                                                                            */
@@ -28,16 +28,16 @@
 #include <string>
 #include <sstream>
  
-#define PI 3.14159265
-#define TURN_MULT 0.6
-#define INCH_MULT 28
- 
 using namespace vex;
  
 competition Competition;
  
-int clm = 1;
-bool conf = false;
+bool DEBUG_MODE = true;
+float PI = 3.14159265;
+float TURN_MULT = 0.6;
+float INCH_MULT = 28;
+int SELECTED_AUTON = 1;
+bool AUTON_LOCKED = false;
  
 void vertical(double v, double inches) {
   topLeft.rotateFor(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
@@ -83,26 +83,27 @@ void deploy(){
  
 void pre_auton(void) {
  // Initializing Robot Configuration. DO NOT REMOVE!
- vexcodeInit();
+  vexcodeInit();
  
- while (conf == false) {
-    if (Controller1.ButtonUp.pressing() && clm < 8 && conf == false) {
-      clm++;
-    } else if (Controller1.ButtonDown.pressing() && clm > 1 && conf == false) {
-      clm--;
+  while (AUTON_LOCKED == false) {
+    if (Controller1.ButtonUp.pressing() && SELECTED_AUTON < 8) {
+      SELECTED_AUTON++;
+    } else if (Controller1.ButtonDown.pressing() && SELECTED_AUTON > 1) {
+      SELECTED_AUTON--;
     } 
+
+    std::stringstream preAutText;
+    preAutText << "(" << Brain.Battery.capacity() << "\%)" << " [AUT" << SELECTED_AUTON << "]"; 
  
     Controller1.Screen.clearScreen();
     Controller1.Screen.setCursor(1, 1);
-    Controller1.Screen.print(clm);
-    Controller1.Screen.newLine();
-    Controller1.Screen.print(Brain.Battery.capacity());
+    Controller1.Screen.print(preAutText.str().c_str());
 
     if (Controller1.ButtonY.pressing()) {
-      conf = true;
+      AUTON_LOCKED = true;
       Controller1.Screen.clearScreen();
-      Controller1.Screen.newLine();
-      Controller1.Screen.print("locked");
+      Controller1.Screen.setCursor(1, 1);
+      Controller1.Screen.print("LOCKED");
       Controller1.rumble(".");
     } 
   }
@@ -113,38 +114,45 @@ void autonomous(void) {
  // Insert autonomous user code here.
  // ..........................................................................
  
-  if (clm == 1) {
-    // run auton 1()
+  if (SELECTED_AUTON == 1) {
     // red left side and blue right side
-    vertical(-100, -18);
+    right_strafe(100, 21);
     flipout();
     deploy();
-    left_strafe(100, 12);
-    vertical(100, 6);
-    flywheel.spin(directionType::fwd, 100, percentUnits::pct);
-    intakeRoller.spin(directionType::fwd, 100, percentUnits::pct);
-    intakeLeft.spin(fwd, 100, pct);
+    turn90(100, -0.5);
+    vertical(50, 18);
+    intakeRoller.spin(directionType::rev, 100, percentUnits::pct);
+    intakeLeft.spin(fwd, -100, pct);
     intakeRight.spin(fwd, 100, pct);
     wait(1.7, timeUnits::sec);
     intakeRoller.stop();
     intakeRight.stop();
     intakeLeft.stop();
-    vertical(-100, -6);
-    intakeRight.spin(fwd, -100, pct);
+    vertical(50, 10);
+    flywheel.spin(directionType::fwd, 100, percentUnits::pct);
+    intakeRoller.spin(directionType::rev, 100, percentUnits::pct);
     intakeLeft.spin(fwd, -100, pct);
-    intakeRoller.spin(fwd, -100, pct);
-    left_strafe(100, 48);
-    wait(0.5, timeUnits::sec);
-    turn90(100, 0.5);
     intakeRight.spin(fwd, 100, pct);
-    intakeLeft.spin(fwd, 100, pct);
-    intakeRoller.spin(fwd, 100, pct);
-    vertical(100, 5);
-    intakeLeft.stop();
+    wait(1.7, timeUnits::sec);
+    intakeRoller.stop();
     intakeRight.stop();
-    vertical(100, 3);
-    wait(1, timeUnits::sec);
-    vertical(-100, -5);
+    intakeLeft.stop();
+    // vertical(-100, -6);
+    // intakeRight.spin(fwd, -100, pct);
+    // intakeLeft.spin(fwd, -100, pct);
+    // intakeRoller.spin(fwd, -100, pct);
+    // left_strafe(100, 48);
+    // wait(0.5, timeUnits::sec);
+    // turn90(100, 0.5);
+    // intakeRight.spin(fwd, 100, pct);
+    // intakeLeft.spin(fwd, 100, pct);
+    // intakeRoller.spin(fwd, 100, pct);
+    // vertical(100, 5);
+    // intakeLeft.stop();
+    // intakeRight.stop();
+    // vertical(100, 3);
+    // wait(1, timeUnits::sec);
+    // vertical(-100, -5);
     //     go straight
     // turn right 90
     // go straight
@@ -160,14 +168,13 @@ void autonomous(void) {
     // go into goal intake
     // full cycle
     // intake blue but just keep it in bot
-  } else if (clm == 2) {
+  } else if (SELECTED_AUTON == 2) {
     // run auton 2
     //red right side and blue left side
-    vertical(-100, -18);
+    vertical(100, -18);
     flipout();
     deploy();
     right_strafe(100, 12);
-    vertical(100, 6);
     flywheel.spin(directionType::fwd, 100, percentUnits::pct);
     intakeRoller.spin(directionType::fwd, 100, percentUnits::pct);
     intakeLeft.spin(fwd, 100, pct);
@@ -192,10 +199,10 @@ void autonomous(void) {
     vertical(100, 3);
     wait(1.7, timeUnits::sec);
     vertical(-100, -5);
-  } else if (clm == 3) {
+  } else if (SELECTED_AUTON == 3) {
     // run auton 3
     // red side 3 goal auton
-  } else if (clm == 4) {
+  } else if (SELECTED_AUTON == 4) {
     // run auton 4
     // blue side 3 goal auton
  } 
@@ -263,11 +270,11 @@ void usercontrol(void) {
     bottomRight.spin(fwd, back_right * nja_md, velocityUnits::pct);
  
     if (Controller1.ButtonR2.pressing()) {
-      intakeLeft.spin(directionType::rev, intakeSpeed, velocityUnits::pct);
+      intakeLeft.spin(directionType::fwd, intakeSpeed, velocityUnits::pct);
       intakeRight.spin(directionType::fwd, intakeSpeed, velocityUnits::pct);
       intakeRoller.spin(directionType::fwd, intakeSpeed, velocityUnits::pct);
     } else if (Controller1.ButtonL2.pressing()) {
-      intakeLeft.spin(directionType::fwd, intakeSpeed, velocityUnits::pct);
+      intakeLeft.spin(directionType::rev, intakeSpeed, velocityUnits::pct);
       intakeRight.spin(directionType::rev, intakeSpeed, velocityUnits::pct);
       intakeRoller.spin(directionType::rev, intakeSpeed, velocityUnits::pct);
     } else if (Controller1.ButtonL1.pressing()) {
@@ -285,7 +292,7 @@ void usercontrol(void) {
     }
  
     if (Controller1.ButtonX.pressing()) {
-      vertical(100, 12);
+      autonomous();
     }
  
     if (Controller1.ButtonA.pressing()) {
@@ -297,17 +304,21 @@ void usercontrol(void) {
       nja_md = 1;
     }
 
-    std::stringstream top;
-    std::stringstream bottom;
-    top << topLeft.velocity(velocityUnits::pct) << " " << topRight.velocity(velocityUnits::pct);
-    bottom << bottomLeft.velocity(velocityUnits::pct) << " " << bottomRight.velocity(velocityUnits::pct);
+    if (AUTON_LOCKED  && DEBUG_MODE) {
+      std::stringstream top;
+      std::stringstream bottom;
+      top << "[" << round(topLeft.velocity(velocityUnits::pct)) << 
+        "] [" << round(topRight.velocity(velocityUnits::pct)) << "]";
+      bottom << "[" << round(bottomLeft.velocity(velocityUnits::pct)) << 
+        "] [" << round(bottomRight.velocity(velocityUnits::pct)) << "]";
 
-    Controller1.Screen.setCursor(2, 1);
-    Controller1.Screen.print(top.str().c_str());
-    Controller1.Screen.newLine();
-    Controller1.Screen.print(bottom.str().c_str());
-    Controller1.Screen.newLine();
-    Controller1.Screen.clearScreen();
+      Controller1.Screen.setCursor(1, 1);
+      Controller1.Screen.print(top.str().c_str());
+      Controller1.Screen.newLine();
+      Controller1.Screen.print(bottom.str().c_str());
+      Controller1.Screen.newLine();
+      Controller1.Screen.clearScreen();
+    }
   }
 }
  
