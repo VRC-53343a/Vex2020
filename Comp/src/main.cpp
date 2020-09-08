@@ -80,7 +80,24 @@ void deploy(){
   wait(0.5, sec);
   intakeRoller.stop();
 }
- 
+
+void vertical_noBlock(double v, double inches) {
+  topLeft.rotateFor(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
+  bottomLeft.rotateFor(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
+  topRight.rotateFor(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
+  bottomRight.rotateFor(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
+}
+
+void intake(double v, double time_intaking) {
+  intakeRoller.spin(directionType::rev, 100, percentUnits::pct);
+  intakeLeft.spin(fwd, -1 * v, pct);
+  intakeRight.spin(fwd, v, pct);
+  wait(time_intaking, timeUnits::sec); 
+  intakeRoller.stop();
+  intakeRight.stop();
+  intakeLeft.stop();
+}
+  
 void pre_auton(void) {
  // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
@@ -115,95 +132,87 @@ void autonomous(void) {
  // ..........................................................................
  
   if (SELECTED_AUTON == 1) {
-    // red left side and blue right side
-    right_strafe(100, 21);
-    flipout();
+    // red left side and blue right side 2 goal auton
+    right_strafe(100, 21);  // strafe right (start bot facing goal)
+    flipout(); 
     deploy();
-    turn90(100, -0.5);
-    vertical(50, 18);
-    intakeRoller.spin(directionType::rev, 100, percentUnits::pct);
-    intakeLeft.spin(fwd, -100, pct);
-    intakeRight.spin(fwd, 100, pct);
-    wait(1.7, timeUnits::sec);
-    intakeRoller.stop();
-    intakeRight.stop();
-    intakeLeft.stop();
-    vertical(50, 10);
+    turn90(100, -0.5); // turn left 45 deg
+    vertical(50, 18); // go forward 
+
+    intake(100, 1.7); // intake the first ball
+
+    vertical(100, 10); // go into goal
     flywheel.spin(directionType::fwd, 100, percentUnits::pct);
+    wait(0.2, timeUnits::sec);
+
+    intake(100, 1.7); // cycle balls
+
+    // at this point we will have 2 balls in the goal and 1 opposing ball in our bot and 1 of our balls in the bot 
+
+    vertical(100, -21); // go backwards
+    turn90(100, 0.5); // turn right 45 deg
+
+    vertical_noBlock(100, -50); // go backwards to get to the middle goal 
+
+    intake(-100, 0.5);
+    
+    turn90(100, -1); // turn left 90 deg
+    vertical(100, 20); // go forward into the goal
+    
     intakeRoller.spin(directionType::rev, 100, percentUnits::pct);
     intakeLeft.spin(fwd, -100, pct);
     intakeRight.spin(fwd, 100, pct);
-    wait(1.7, timeUnits::sec);
+    wait(1.7, timeUnits::sec); // cycle balls
     intakeRoller.stop();
     intakeRight.stop();
     intakeLeft.stop();
-    // vertical(-100, -6);
-    // intakeRight.spin(fwd, -100, pct);
-    // intakeLeft.spin(fwd, -100, pct);
-    // intakeRoller.spin(fwd, -100, pct);
-    // left_strafe(100, 48);
-    // wait(0.5, timeUnits::sec);
-    // turn90(100, 0.5);
-    // intakeRight.spin(fwd, 100, pct);
-    // intakeLeft.spin(fwd, 100, pct);
-    // intakeRoller.spin(fwd, 100, pct);
-    // vertical(100, 5);
-    // intakeLeft.stop();
-    // intakeRight.stop();
-    // vertical(100, 3);
-    // wait(1, timeUnits::sec);
-    // vertical(-100, -5);
-    //     go straight
-    // turn right 90
-    // go straight
-    // turn right 90
-    // go forward
-    // full cycle preload and bottom ball in
-    // intake blue but dont shoot
-    // go back a bit release read ball
-    // turn right 90
-    // go straight
-    // turn left 45
-    // go straight intake
-    // go into goal intake
-    // full cycle
-    // intake blue but just keep it in bot
+    
+    // stop with 1 opposing ball in the robot
+    // final auton will end with both side and middle goal with only 2 of our balls, and bot will end with 1 opposing ball in bot
+
   } else if (SELECTED_AUTON == 2) {
-    // run auton 2
-    //red right side and blue left side
-    vertical(100, -18);
-    flipout();
+    //red right side and blue left side 2 goal auton
+  
+    right_strafe(100, 21);  // strafe left (start bot facing goal)
+    flipout(); 
     deploy();
-    right_strafe(100, 12);
+    turn90(100, 0.5); // turn right 45 deg
+    vertical(50, 18); // go forward 
+
+    intake(100, 1.7); // intake the first ball
+
+    vertical(100, 10); // go into goal
+
     flywheel.spin(directionType::fwd, 100, percentUnits::pct);
-    intakeRoller.spin(directionType::fwd, 100, percentUnits::pct);
-    intakeLeft.spin(fwd, 100, pct);
+    wait(0.2, timeUnits::sec);
+
+    intake(100, 1.7); // cycle balls
+
+    // at this point we will have 2 balls in the goal and 1 opposing ball in our bot and 1 of our balls in the bot 
+
+    vertical(100, -28); // go backwards
+    turn90(100, -0.5); // turn left 45 deg
+
+    vertical_noBlock(100, -50); // go backwards to get to the middle goal 
+
+    intake(-100, 0.5);
+    
+    turn90(100, 1); // turn right 90 deg
+    vertical(100, 20); // go forward into the goal
+    
+    intakeRoller.spin(directionType::rev, 100, percentUnits::pct);
+    intakeLeft.spin(fwd, -100, pct);
     intakeRight.spin(fwd, 100, pct);
-    wait(1.7, timeUnits::sec);
+    wait(1.7, timeUnits::sec); // cycle balls
     intakeRoller.stop();
     intakeRight.stop();
     intakeLeft.stop();
-    vertical(-100, -6);
-    intakeRight.spin(fwd, -100, pct);
-    intakeLeft.spin(fwd, -100, pct);
-    intakeRoller.spin(fwd, -100, pct);
-    left_strafe(100, 48);
-    wait(0.5, timeUnits::sec);
-    turn90(100, -0.5);
-    intakeRight.spin(fwd, 100, pct);
-    intakeLeft.spin(fwd, 100, pct);
-    intakeRoller.spin(fwd, 100, pct);
-    vertical(100, 5);
-    intakeLeft.stop();
-    intakeRight.stop();
-    vertical(100, 3);
-    wait(1.7, timeUnits::sec);
-    vertical(-100, -5);
+    
+    // stop with 1 opposing ball in the robot
+    // final auton will end with both side and middle goal with only 2 of our balls, and bot will end with 1 opposing ball in bot
   } else if (SELECTED_AUTON == 3) {
-    // run auton 3
     // red side 3 goal auton
   } else if (SELECTED_AUTON == 4) {
-    // run auton 4
     // blue side 3 goal auton
  } 
 }
