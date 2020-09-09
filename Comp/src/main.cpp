@@ -95,7 +95,7 @@ void right_strafe(double v, double inches) {
  
 void flipout(){
   intakeLeft.spin(fwd, 50, pct);
-  intakeRight.spin(rev, 50, pct);
+  intakeRight.spin(fwd, -50, pct);
   wait(0.5, sec);
   intakeLeft.stop();
   intakeRight.stop();
@@ -158,7 +158,7 @@ void autonomous(void) {
  // ..........................................................................
  
   if (SELECTED_AUTON == 1) {
-    // red left side and blue right side 2 goal auton
+    // red left side and blue left  side 2 goal auton
     right_strafe(100, 21);  // strafe right (start bot facing goal)
     flipout(); 
     deploy();
@@ -197,7 +197,7 @@ void autonomous(void) {
     // final auton will end with both side and middle goal with only 2 of our balls, and bot will end with 1 opposing ball in bot
 
   } else if (SELECTED_AUTON == 2) {
-    //red right side and blue left side 2 goal auton
+    //red right side and right left side 2 goal auton
   
     right_strafe(100, 21);  // strafe left (start bot facing goal)
     flipout(); 
@@ -237,9 +237,73 @@ void autonomous(void) {
     // stop with 1 opposing ball in the robot
     // final auton will end with both side and middle goal with only 2 of our balls, and bot will end with 1 opposing ball in bot
   } else if (SELECTED_AUTON == 3) {
-    // red side 3 goal auton
+    // left side red and left side blue 3 goal auton
+    vertical_noBlock(100,10); //start near the goal and go forward very little 
+    intake(100, 0.3); // move while intaking
+
+    turn90(100, -0.4);
+    flywheel.spin(fwd, 100, pct);
+    wait(0.3, sec);
+    intakeRoller.spin(fwd, 100, pct); // ball in hole
+    wait(0.5, sec);
+
+    vertical(100, -30); // move back 
+
+    // at this point scored 1 ball and have 1 in bot
+
+    turn90(100, -90); // turn left to go to mid goal
+    vertical(100, 50);
+    intakeRoller.spin(fwd, 100, pct);
+    wait(0.8, sec); // ball in hole mid goal
+
+    // at this point we have 0 balls in the bot and scored another ball in mid goal
+
+    vertical(-100, 15); // go backwards
+    left_strafe(100, 50);
+    vertical(100, 50); // go into the goal
+    vertical_noBlock(100, 10); // once near the goal use no block so we can move and intake
+    intake(100, 0.5); // intake ball
+    vertical(100, 10); // move into goal
+
+    intakeRoller.spin(fwd, 100, pct);
+    wait(0.5, sec);
+
+
+
+
+
+
   } else if (SELECTED_AUTON == 4) {
-    // blue side 3 goal auton
+    // right side red and right side blue 3 goal auton
+    vertical_noBlock(100,10); //start near the goal and go forward very little 
+    intake(100, 0.3); // move while intaking
+
+    turn90(100, 0.4);
+    flywheel.spin(fwd, 100, pct);
+    wait(0.3, sec);
+    intakeRoller.spin(fwd, 100, pct); // ball in hole
+    wait(0.5, sec);
+
+    vertical(100, -30); // move back 
+
+    // at this point scored 1 ball and have 1 in bot
+
+    turn90(100, 90); // turn right  to go to mid goal
+    vertical(100, 50);
+    intakeRoller.spin(fwd, 100, pct);
+    wait(0.8, sec); // ball in hole mid goal
+
+    // at this point we have 0 balls in the bot and scored another ball in mid goal
+
+    vertical(-100, 15); // go backwards
+    right_strafe(100, 50);
+    vertical(100, 50); // go into the goal
+    vertical_noBlock(100, 10); // once near the goal use no block so we can move and intake
+    intake(100, 0.5); // intake ball
+    vertical(100, 10); // move into goal
+
+    intakeRoller.spin(fwd, 100, pct);
+    wait(0.5, sec);
  } 
 }
  
