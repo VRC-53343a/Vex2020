@@ -11,6 +11,32 @@
 // flywheel             motor         8               
 // Controller1          controller                    
 // ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// topLeft              motor         1               
+// bottomLeft           motor         2               
+// topRight             motor         3               
+// bottomRight          motor         4               
+// intakeLeft           motor         5               
+// intakeRight          motor         6               
+// intakeRoller         motor         7               
+// flywheel             motor         8               
+// Controller1          controller                    
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// topLeft              motor         1               
+// bottomLeft           motor         2               
+// topRight             motor         3               
+// bottomRight          motor         4               
+// intakeLeft           motor         5               
+// intakeRight          motor         6               
+// intakeRoller         motor         7               
+// flywheel             motor         8               
+// Controller1          controller                    
+// ---- END VEXCODE CONFIGURED DEVICES ----
 /*-----------------------------------------------w-----------------------------*/
 /*                                                                            */
 /*    Module:       main.cpp                                                  */
@@ -69,7 +95,7 @@ void right_strafe(double v, double inches) {
  
 void flipout(){
   intakeLeft.spin(fwd, 50, pct);
-  intakeRight.spin(fwd, 50, pct);
+  intakeRight.spin(rev, 50, pct);
   wait(0.5, sec);
   intakeLeft.stop();
   intakeRight.stop();
@@ -90,7 +116,7 @@ void vertical_noBlock(double v, double inches) {
 
 void intake(double v, double time_intaking) {
   intakeRoller.spin(directionType::rev, 100, percentUnits::pct);
-  intakeLeft.spin(fwd, -1 * v, pct);
+  intakeLeft.spin(fwd, 1 * v, pct);
   intakeRight.spin(fwd, v, pct);
   wait(time_intaking, timeUnits::sec); 
   intakeRoller.stop();
