@@ -210,7 +210,7 @@ void autonomous(void) {
  
 void usercontrol(void) {
   int intakeSpeed = 100;
-  int flywheelSpeed = 100;
+  int flywheelSpeed = 75;
   double nja_md = 1;
  
   while (true) {
