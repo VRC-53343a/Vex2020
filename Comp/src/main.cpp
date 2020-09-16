@@ -268,11 +268,6 @@ void autonomous(void) {
     intakeRoller.spin(fwd, 100, pct);
     wait(0.5, sec);
 
-
-
-
-
-
   } else if (SELECTED_AUTON == 4) {
     // right side red and right side blue 3 goal auton
     vertical_noBlock(100,10); //start near the goal and go forward very little 
@@ -309,7 +304,7 @@ void autonomous(void) {
  
 void usercontrol(void) {
   int intakeSpeed = 100;
-  int flywheelSpeed = 75;
+  double flywheelSpeed = 90;
   double nja_md = 1;
  
   while (true) {
