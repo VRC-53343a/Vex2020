@@ -37,6 +37,19 @@
 // flywheel             motor         8               
 // Controller1          controller                    
 // ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// topLeft              motor         1               
+// bottomLeft           motor         2               
+// topRight             motor         3               
+// bottomRight          motor         4               
+// intakeLeft           motor         5               
+// intakeRight          motor         6               
+// intakeRoller         motor         7               
+// flywheel             motor         8               
+// Controller1          controller                    
+// ---- END VEXCODE CONFIGURED DEVICES ----
 /*-----------------------------------------------w-----------------------------*/
 /*                                                                            */
 /*    Module:       main.cpp                                                  */
@@ -62,7 +75,7 @@ bool DEBUG_MODE = true;
 float PI = 3.14159265;
 float TURN_MULT = 0.6;
 float INCH_MULT = 28;
-int SELECTED_AUTON = 1;
+int SELECTED_AUTON = 5;
 bool AUTON_LOCKED = false;
  
 void vertical(double v, double inches) {
@@ -95,7 +108,7 @@ void right_strafe(double v, double inches) {
  
 void flipout(){
   intakeLeft.spin(fwd, 50, pct);
-  intakeRight.spin(fwd, -50, pct);
+  intakeRight.spin(fwd, 50, pct);
   wait(0.5, sec);
   intakeLeft.stop();
   intakeRight.stop();
@@ -103,7 +116,7 @@ void flipout(){
 
 void deploy(){
   intakeRoller.spin(fwd, 25, percentUnits:: pct);
-  wait(0.5, sec);
+  wait(0.75, sec);
   intakeRoller.stop();
 }
 
@@ -122,6 +135,12 @@ void intake(double v, double time_intaking) {
   intakeRoller.stop();
   intakeRight.stop();
   intakeLeft.stop();
+}
+
+void run_flywheel(double v, double time_flywheel) {
+  flywheel.spin(fwd, v, pct);
+  wait(time_flywheel, timeUnits::sec);
+  flywheel.stop();
 }
   
 void pre_auton(void) {
@@ -299,7 +318,22 @@ void autonomous(void) {
 
     intakeRoller.spin(fwd, 100, pct);
     wait(0.5, sec);
- } 
+ } else if (SELECTED_AUTON == 5) { // skils
+    left_strafe(100, 16);
+
+    deploy();
+    flipout();
+
+    turn90(100, 0.5);
+    vertical(100, 4);
+
+    flywheel.spin(fwd, 100, pct);
+    wait(0.2, sec);
+    intakeRoller.spin(reverse, 100, pct);
+    wait(0.5, sec);
+    intakeRoller.stop();
+
+ }
 }
  
 void usercontrol(void) {
