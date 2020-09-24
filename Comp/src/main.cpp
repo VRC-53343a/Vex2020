@@ -318,21 +318,86 @@ void autonomous(void) {
 
     intakeRoller.spin(fwd, 100, pct);
     wait(0.5, sec);
- } else if (SELECTED_AUTON == 5) { // skils
-    left_strafe(100, 16);
+ } else if (SELECTED_AUTON == 5) { // skills
+    left_strafe(100, 12);
 
     deploy();
     flipout();
 
-    turn90(100, 0.5);
+    // approach goal
+    turn90(100, 0.55);
+    wait(0.2, sec);
     vertical(100, 4);
 
+    // shoot first goal
     flywheel.spin(fwd, 100, pct);
     wait(0.2, sec);
     intakeRoller.spin(reverse, 100, pct);
     wait(0.5, sec);
     intakeRoller.stop();
+    wait(0.2, sec);
+    flywheel.stop();
 
+    // position for intaking second ball
+    vertical(100, -6);
+    left_strafe(100, 12);
+    turn90(100, 1.6);
+    wait(0.2, sec);
+    left_strafe(100, 8);
+    wait(0.2, sec);
+    vertical(100, -12);
+    wait(0.2, sec);
+
+    // intake second ball
+    intakeRoller.spin(reverse, 100, pct);
+    intakeRight.spin(reverse, 100, pct);
+    intakeLeft.spin(reverse, 100, pct);
+    vertical_noBlock(75, 50);
+    wait(2, sec);
+    intakeRoller.stop();
+    intakeRight.stop();
+    intakeLeft.stop();
+
+    right_strafe(100, 6);
+    wait(0.2, sec);
+    turn90(100, -1.1);
+    wait(0.2, sec);
+    vertical(100, 4);
+
+    // shoot 2nd shot
+    flywheel.spin(fwd, 100, pct);
+    wait(0.4, sec);
+    intakeRoller.spin(reverse, 100, pct);
+    wait(0.6, sec);
+    intakeRoller.stop();
+    wait(0.2, sec);
+    flywheel.stop();
+    vertical(100, -5);
+    wait(0.2, sec);
+
+    // position and intake for 3rd shot
+    turn90(100, 1.1);
+    wait(0.2, sec);
+    intakeRoller.spin(reverse, 100, pct);
+    intakeRight.spin(reverse, 100, pct);
+    intakeLeft.spin(reverse, 100, pct);
+    vertical_noBlock(75, 37);
+    wait(2, sec);
+    intakeRoller.stop();
+    intakeRight.stop();
+    intakeLeft.stop();
+    turn90(100, -0.55);
+    vertical(100, 3);
+    wait(0.2, sec);
+
+    // shoot third shot
+    flywheel.spin(fwd, 100, pct);
+    wait(0.4, sec);
+    intakeRoller.spin(reverse, 100, pct);
+    wait(0.6, sec);
+    intakeRoller.stop();
+    wait(0.2, sec);
+    flywheel.stop();
  }
 }
  
