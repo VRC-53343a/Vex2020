@@ -1,10 +1,36 @@
 // ---- START VEXCODE CONFIGURED DEVICES ----
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
+// topLeft              motor         12              
+// bottomLeft           motor         2               
+// topRight             motor         3               
+// bottomRight          motor         11              
+// intakeLeft           motor         5               
+// intakeRight          motor         6               
+// intakeRoller         motor         7               
+// topIndexer           motor         8               
+// Controller1          controller                    
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// topLeft              motor         12              
+// bottomLeft           motor         2               
+// topRight             motor         3               
+// bottomRight          motor         11              
+// intakeLeft           motor         5               
+// intakeRight          motor         6               
+// intakeRoller         motor         7               
+// flywheel             motor         8               
+// Controller1          controller                    
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
 // topLeft              motor         1               
 // bottomLeft           motor         2               
 // topRight             motor         3               
-// bottomRight          motor         4               
+// bottomRight          motor         11              
 // intakeLeft           motor         5               
 // intakeRight          motor         6               
 // intakeRoller         motor         7               
@@ -37,25 +63,12 @@
 // flywheel             motor         8               
 // Controller1          controller                    
 // ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// topLeft              motor         1               
-// bottomLeft           motor         2               
-// topRight             motor         3               
-// bottomRight          motor         4               
-// intakeLeft           motor         5               
-// intakeRight          motor         6               
-// intakeRoller         motor         7               
-// flywheel             motor         8               
-// Controller1          controller                    
-// ---- END VEXCODE CONFIGURED DEVICES ----
-/*-----------------------------------------------w-----------------------------*/
+/*----------------------------------------------------------------------------*/
 /*                                                                            */
 /*    Module:       main.cpp                                                  */
-/*    Author:       VEX                                                       */
+/*    Author:       Adam Xu, Shafin Haque                                     */
 /*    Created:      Thu Sep 26 2019                                           */
-/*    Description:  Competition Template                                      */
+/*    Description:  53343A Comp code                                          */
 /*                                                                            */
 /*----------------------------------------------------------------------------*/
  
@@ -77,39 +90,113 @@ float TURN_MULT = 0.6;
 float INCH_MULT = 28;
 int SELECTED_AUTON = 5;
 bool AUTON_LOCKED = false;
+
+double averageEncoderVal() {
+  return (topLeft.position(deg) + topRight.position(deg) +
+    bottomLeft.position(deg) + bottomRight.position(deg))/4;
+}
+
+void accelVertical(double v, double inches) {
+  topLeft.resetPosition(); topRight.resetPosition(); 
+  bottomLeft.resetPosition(); bottomRight.resetPosition();
+
+  double error; double desired = inches * INCH_MULT;
+  double justify = v / (desired*desired);
+
+  while (true) {
+    error = desired - averageEncoderVal();
+    if (error >= -5 && error <= 5) {
+      topLeft.stop(brake);
+      topRight.stop(brake);
+      bottomLeft.stop(brake);
+      bottomRight.stop(brake);
+      break;
+    }
+
+    double pwr = justify * averageEncoderVal() * averageEncoderVal() + 35;
+
+    topLeft.spin(fwd, pwr, pct); topRight.spin(fwd, pwr, pct); bottomLeft.spin(fwd, pwr, pct); bottomRight.spin(fwd, pwr, pct); 
+  }
+}
+
+void accelRight(double v, double inches) {
+  topLeft.resetPosition(); topRight.resetPosition(); 
+  bottomLeft.resetPosition(); bottomRight.resetPosition();
+
+  double error; double desired = inches * INCH_MULT;
+  double justify = v / (desired*desired);
+
+  while (true) {
+    error = desired - topLeft.position(deg);
+    if (error >= -5 && error <= 5) {
+      topLeft.stop(brake);
+      topRight.stop(brake);
+      bottomLeft.stop(brake);
+      bottomRight.stop(brake);
+
+      break;
+    }
+    double pwr = justify * topLeft.position(deg) * topLeft.position(deg) + 35;
+    topLeft.spin(fwd, pwr, pct); topRight.spin(fwd, -1 * pwr, pct);
+    bottomLeft.spin(fwd, -1 * pwr, pct); bottomRight.spin(fwd, pwr, pct); 
+  }
+}
+
+void accelLeft(double v, double inches) {
+  topLeft.resetPosition(); topRight.resetPosition(); 
+  bottomLeft.resetPosition(); bottomRight.resetPosition();
+
+  double error; double desired = inches * INCH_MULT;
+  double justify = v / (desired*desired);
+
+  while (true) {
+    error = desired - topRight.position(deg);
+    if (error >= -5 && error <= 5) {
+      topLeft.stop(brake);
+      topRight.stop(brake);
+      bottomLeft.stop(brake);
+      bottomRight.stop(brake);
+
+      break;
+    }
+    double pwr = justify * topRight.position(deg) * topRight.position(deg) + 35;
+    topLeft.spin(fwd, -1*pwr, pct); topRight.spin(fwd, pwr, pct);
+    bottomLeft.spin(fwd, pwr, pct); bottomRight.spin(fwd, -1*pwr, pct); 
+  }
+}
  
 void vertical(double v, double inches) {
-  topLeft.rotateFor(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
-  bottomLeft.rotateFor(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
-  topRight.rotateFor(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
-  bottomRight.rotateFor(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, true);
+  topLeft.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
+  bottomLeft.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
+  topRight.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
+  bottomRight.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, true);
 }
  
 void turn90(double v, double dir) {
-  topLeft.rotateFor(dir * 350, rotationUnits::deg, v, velocityUnits::pct, false);
-  topRight.rotateFor(-1 * dir * 350, rotationUnits::deg, v, velocityUnits::pct, false);
-  bottomLeft.rotateFor(dir * 350, rotationUnits::deg, v, velocityUnits::pct, false);
-  bottomRight.rotateFor(-1 * dir * 350, rotationUnits::deg, v, velocityUnits::pct, true);
+  topLeft.rotateFor(dir * 350, deg, v, velocityUnits::pct, false);
+  topRight.rotateFor(-1 * dir * 350, deg, v, velocityUnits::pct, false);
+  bottomLeft.rotateFor(dir * 350, deg, v, velocityUnits::pct, false);
+  bottomRight.rotateFor(-1 * dir * 350, deg, v, velocityUnits::pct, true);
 }
  
 void left_strafe(double v, double inches) {
-  topLeft.rotateFor(-1 * inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
-  topRight.rotateFor(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
-  bottomLeft.rotateFor(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
-  bottomRight.rotateFor(-1 * inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, true);
+  topLeft.rotateFor(-1 * inches * INCH_MULT, deg, v, velocityUnits::pct, false);
+  topRight.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
+  bottomLeft.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
+  bottomRight.rotateFor(-1 * inches * INCH_MULT, deg, v, velocityUnits::pct, true);
 }
  
 void right_strafe(double v, double inches) {
-  topLeft.rotateFor(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
-  topRight.rotateFor(-1 * inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
-  bottomLeft.rotateFor(-1 * inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
-  bottomRight.rotateFor(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, true);
+  topLeft.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
+  topRight.rotateFor(-1 * inches * INCH_MULT, deg, v, velocityUnits::pct, false);
+  bottomLeft.rotateFor(-1 * inches * INCH_MULT, deg, v, velocityUnits::pct, false);
+  bottomRight.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, true);
 }
  
 void flipout(){
   intakeLeft.spin(fwd, 50, pct);
   intakeRight.spin(fwd, 50, pct);
-  wait(0.5, sec);
+  wait(0.75, sec);
   intakeLeft.stop();
   intakeRight.stop();
 }
@@ -121,10 +208,10 @@ void deploy(){
 }
 
 void vertical_noBlock(double v, double inches) {
-  topLeft.rotateFor(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
-  bottomLeft.rotateFor(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
-  topRight.rotateFor(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
-  bottomRight.rotateFor(inches * INCH_MULT, rotationUnits::deg, v, velocityUnits::pct, false);
+  topLeft.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
+  bottomLeft.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
+  topRight.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
+  bottomRight.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
 }
 
 void intake(double v, double time_intaking) {
@@ -137,10 +224,10 @@ void intake(double v, double time_intaking) {
   intakeLeft.stop();
 }
 
-void run_flywheel(double v, double time_flywheel) {
-  flywheel.spin(fwd, v, pct);
+void run_top(double v, double time_flywheel) {
+  topIndexer.spin(fwd, v, pct);
   wait(time_flywheel, timeUnits::sec);
-  flywheel.stop();
+  topIndexer.stop();
 }
   
 void pre_auton(void) {
@@ -161,7 +248,7 @@ void pre_auton(void) {
     Controller1.Screen.setCursor(1, 1);
     Controller1.Screen.print(preAutText.str().c_str());
 
-    if (Controller1.ButtonY.pressing()) {
+    if (Controller1.ButtonA.pressing()) {
       AUTON_LOCKED = true;
       Controller1.Screen.clearScreen();
       Controller1.Screen.setCursor(1, 1);
@@ -172,10 +259,6 @@ void pre_auton(void) {
 }
  
 void autonomous(void) {
- // ..........................................................................
- // Insert autonomous user code here.
- // ..........................................................................
- 
   if (SELECTED_AUTON == 1) {
     // red left side and blue left  side 2 goal auton
     right_strafe(100, 21);  // strafe right (start bot facing goal)
@@ -187,7 +270,7 @@ void autonomous(void) {
     intake(100, 1.7); // intake the first ball
 
     vertical(100, 10); // go into goal
-    flywheel.spin(directionType::fwd, 100, percentUnits::pct);
+    topIndexer.spin(directionType::fwd, 100, percentUnits::pct);
     wait(0.2, timeUnits::sec);
 
     intake(100, 1.7); // cycle balls
@@ -228,7 +311,7 @@ void autonomous(void) {
 
     vertical(100, 10); // go into goal
 
-    flywheel.spin(directionType::fwd, 100, percentUnits::pct);
+    topIndexer.spin(directionType::fwd, 100, percentUnits::pct);
     wait(0.2, timeUnits::sec);
 
     intake(100, 1.7); // cycle balls
@@ -261,7 +344,7 @@ void autonomous(void) {
     intake(100, 0.3); // move while intaking
 
     turn90(100, -0.4);
-    flywheel.spin(fwd, 100, pct);
+    topIndexer.spin(fwd, 100, pct);
     wait(0.3, sec);
     intakeRoller.spin(fwd, 100, pct); // ball in hole
     wait(0.5, sec);
@@ -293,7 +376,7 @@ void autonomous(void) {
     intake(100, 0.3); // move while intaking
 
     turn90(100, 0.4);
-    flywheel.spin(fwd, 100, pct);
+    topIndexer.spin(fwd, 100, pct);
     wait(0.3, sec);
     intakeRoller.spin(fwd, 100, pct); // ball in hole
     wait(0.5, sec);
@@ -302,7 +385,7 @@ void autonomous(void) {
 
     // at this point scored 1 ball and have 1 in bot
 
-    turn90(100, 90); // turn right  to go to mid goal
+    turn90(100, 90); // turn right  to go to jmid goal
     vertical(100, 50);
     intakeRoller.spin(fwd, 100, pct);
     wait(0.8, sec); // ball in hole mid goal
@@ -319,95 +402,133 @@ void autonomous(void) {
     intakeRoller.spin(fwd, 100, pct);
     wait(0.5, sec);
  } else if (SELECTED_AUTON == 5) { // skills
-    left_strafe(100, 12);
-
     deploy();
-    flipout();
-
-    // approach goal
-    turn90(100, 0.55);
-    wait(0.2, sec);
-    vertical(100, 4);
+    bottomLeft.spin(fwd, 100, pct);
+    bottomRight.spin(reverse, 100, pct); 
+    topRight.spin(fwd, 60, pct);
+    topLeft.spin(fwd, 35, pct);
+    wait(330, msec);
+    bottomLeft.stop(brake);
+    bottomRight.stop(brake);
+    topRight.stop(brake);
+    topLeft.stop(brake);
+    wait(0.4, sec);
 
     // shoot first goal
-    flywheel.spin(fwd, 100, pct);
-    wait(0.2, sec);
+    topIndexer.spin(fwd, 75, pct);
+    wait(1, sec);
     intakeRoller.spin(reverse, 100, pct);
     wait(0.5, sec);
     intakeRoller.stop();
-    wait(0.2, sec);
-    flywheel.stop();
+    wait(0.3, sec);
+    topIndexer.stop();
 
     // position for intaking second ball
-    vertical(100, -6);
-    left_strafe(100, 12);
-    turn90(100, 1.6);
+    bottomLeft.spin(fwd, 100, pct);
+    bottomRight.spin(reverse, 100, pct); 
+    topRight.spin(fwd, 60, pct);
+    topLeft.spin(fwd, 35, pct);
+    wait(500, msec);
+    bottomLeft.stop(brake);
+    bottomRight.stop(brake);
+    topRight.stop(brake);
+    topLeft.stop(brake);
+    wait(0.4, sec);
+
+    vertical(50, -4);
     wait(0.2, sec);
-    left_strafe(100, 8);
-    wait(0.2, sec);
-    vertical(100, -12);
-    wait(0.2, sec);
+    turn90(100, 1.25);
+    vertical(75, -7);
+    wait(0.5, sec);
+
+    flipout();
+    wait(1, sec);
 
     // intake second ball
     intakeRoller.spin(reverse, 100, pct);
     intakeRight.spin(reverse, 100, pct);
     intakeLeft.spin(reverse, 100, pct);
-    vertical_noBlock(75, 50);
-    wait(2, sec);
+    accelVertical(70, 42);
     intakeRoller.stop();
     intakeRight.stop();
     intakeLeft.stop();
 
-    right_strafe(100, 6);
+    wait(0.4, sec);
+    turn90(100, -1.05);
     wait(0.2, sec);
-    turn90(100, -1.1);
-    wait(0.2, sec);
-    vertical(100, 4);
 
     // shoot 2nd shot
-    flywheel.spin(fwd, 100, pct);
-    wait(0.4, sec);
+    topIndexer.spin(fwd, 100, pct);
+    wait(1, sec);
     intakeRoller.spin(reverse, 100, pct);
-    wait(0.6, sec);
+    wait(0.5, sec);
     intakeRoller.stop();
-    wait(0.2, sec);
-    flywheel.stop();
-    vertical(100, -5);
-    wait(0.2, sec);
+    wait(0.3, sec);
+    topIndexer.stop();
 
     // position and intake for 3rd shot
-    turn90(100, 1.1);
-    wait(0.2, sec);
+    turn90(100, 1);
+    wait(0.4, sec);
+
     intakeRoller.spin(reverse, 100, pct);
     intakeRight.spin(reverse, 100, pct);
     intakeLeft.spin(reverse, 100, pct);
-    vertical_noBlock(75, 37);
-    wait(2, sec);
+    accelVertical(75, 35);
+    wait(0.2, sec);
+
+    turn90(100, -0.5);
+    wait(0.2, sec);
+    vertical(100, 5);
+    wait(0.2, sec);
+
     intakeRoller.stop();
     intakeRight.stop();
     intakeLeft.stop();
-    turn90(100, -0.55);
-    vertical(100, 3);
-    wait(0.2, sec);
 
     // shoot third shot
-    flywheel.spin(fwd, 100, pct);
-    wait(0.4, sec);
+    topIndexer.spin(fwd, 100, pct);
+    wait(0.5, sec);
     intakeRoller.spin(reverse, 100, pct);
     wait(0.6, sec);
     intakeRoller.stop();
-    wait(0.2, sec);
-    flywheel.stop();
- }
+    wait(0.5, sec);
+    topIndexer.stop();
+
+    // fourth
+    // vertical(100, -12);
+    // turn90(100, 2);
+
+    // intakeRoller.spin(reverse, 100, pct);
+    // intakeRight.spin(reverse, 100, pct);
+    // intakeLeft.spin(reverse, 100, pct);
+    // accelVertical(100, 30);
+    // intakeRoller.stop();
+    // intakeRight.stop();
+    // intakeLeft.stop();
+
+    // turn90(100, -1.1);
+    // flywheel.spin(fwd, 100, pct);
+    // wait(0.5, sec);
+    // intakeRoller.spin(reverse, 100, pct);
+    // wait(0.6, sec);
+    // intakeRoller.stop();
+    // wait(0.3, sec);
+    // flywheel.stop();
+  } else if (SELECTED_AUTON == 6) {
+    accelVertical(100, 20);
+  }
 }
  
 void usercontrol(void) {
   int intakeSpeed = 100;
-  double flywheelSpeed = 90;
   double nja_md = 1;
+
+  topLeft.setBrake(brake);
+  topRight.setBrake(brake); 
+  bottomLeft.setBrake(brake);
+  bottomRight.setBrake(brake);
  
   while (true) {
-    wait(20, msec);
     double front_left = (double)(Controller1.Axis3.position(pct) +
                                 Controller1.Axis4.position(pct));
     double back_left = (double)(Controller1.Axis3.position(pct) -
@@ -450,67 +571,52 @@ void usercontrol(void) {
                                   std::max(std::abs(back_right), 100.0))));
  
     // Scale everything down by the factor that makes the largest only 100, if
-    // it was over
+    // it was over    wait(100, msec);
     front_left = front_left / max_raw_sum * 100.0;
     back_left = back_left / max_raw_sum * 100.0;
     front_right = front_right / max_raw_sum * 100.0;
     back_right = back_right / max_raw_sum * 100.0;
  
     // Write the manipulated values out to the motors
-    topLeft.spin(fwd, front_left * nja_md, velocityUnits::pct);
-    bottomLeft.spin(fwd, back_left * nja_md, velocityUnits::pct);
-    topRight.spin(fwd, front_right * nja_md, velocityUnits::pct);
-    bottomRight.spin(fwd, back_right * nja_md, velocityUnits::pct);
+    bottomRight.spin(fwd, back_right * nja_md, pct);
+    topLeft.spin(fwd, front_left * nja_md, pct);
+    bottomLeft.spin(fwd, back_left * nja_md, pct);
+    topRight.spin(fwd, front_right * nja_md, pct);
  
     if (Controller1.ButtonR2.pressing()) {
-      intakeLeft.spin(directionType::fwd, intakeSpeed, velocityUnits::pct);
-      intakeRight.spin(directionType::fwd, intakeSpeed, velocityUnits::pct);
-      intakeRoller.spin(directionType::fwd, intakeSpeed, velocityUnits::pct);
+      intakeLeft.spin(fwd, intakeSpeed, pct);
+      intakeRight.spin(fwd, intakeSpeed, pct);
+      intakeRoller.spin(fwd, intakeSpeed, pct);
+      topIndexer.spin(fwd, intakeSpeed, pct);
     } else if (Controller1.ButtonL2.pressing()) {
-      intakeLeft.spin(directionType::rev, intakeSpeed, velocityUnits::pct);
-      intakeRight.spin(directionType::rev, intakeSpeed, velocityUnits::pct);
-      intakeRoller.spin(directionType::rev, intakeSpeed, velocityUnits::pct);
+      intakeLeft.spin(reverse, intakeSpeed, pct);
+      intakeRight.spin(reverse, intakeSpeed, pct);
+      intakeRoller.spin(reverse, intakeSpeed, pct);
+      topIndexer.spin(fwd, intakeSpeed, pct);
     } else if (Controller1.ButtonL1.pressing()) {
-      intakeRoller.spin(directionType::rev, intakeSpeed, velocityUnits::pct);
+      intakeRoller.spin(reverse, intakeSpeed, pct);
+      topIndexer.spin(reverse, intakeSpeed, pct);
+    } else if (Controller1.ButtonR1.pressing()) {
+      intakeLeft.spin(reverse, intakeSpeed, pct);
+      intakeRight.spin(reverse, intakeSpeed, pct);
     } else {
-      intakeLeft.stop(brakeType::brake);
-      intakeRight.stop(brakeType::brake);
-      intakeRoller.stop(brakeType::brake);
+      intakeLeft.stop(brake);
+      intakeRight.stop(brake);
+      intakeRoller.stop(brake);
+      topIndexer.stop(brake);
     }
- 
+
     if (Controller1.ButtonR1.pressing()) {
-      flywheel.spin(directionType::fwd, flywheelSpeed, velocityUnits::pct);
-    } else {
-      flywheel.stop(brakeType::brake);
-    }
- 
-    if (Controller1.ButtonX.pressing()) {
-      autonomous();
-    }
- 
-    if (Controller1.ButtonA.pressing()) {
+      intakeLeft.spin(reverse, intakeSpeed, pct);
+      intakeRight.spin(reverse, intakeSpeed, pct);
+    } 
+
+    if (Controller1.ButtonB.pressing()) {
       nja_md = 0.3;
-      Controller1.Screen.setCursor(1, 1);
-      Controller1.Screen.print("ninja");
+      Controller1.Screen.setCursor(3, 1);
+      Controller1.Screen.print("[NINJA]");
     } else {
-      Controller1.Screen.clearScreen();
       nja_md = 1;
-    }
-
-    if (AUTON_LOCKED  && DEBUG_MODE) {
-      std::stringstream top;
-      std::stringstream bottom;
-      top << "[" << round(topLeft.velocity(velocityUnits::pct)) << 
-        "] [" << round(topRight.velocity(velocityUnits::pct)) << "]";
-      bottom << "[" << round(bottomLeft.velocity(velocityUnits::pct)) << 
-        "] [" << round(bottomRight.velocity(velocityUnits::pct)) << "]";
-
-      Controller1.Screen.setCursor(1, 1);
-      Controller1.Screen.print(top.str().c_str());
-      Controller1.Screen.newLine();
-      Controller1.Screen.print(bottom.str().c_str());
-      Controller1.Screen.newLine();
-      Controller1.Screen.clearScreen();
     }
   }
 }
@@ -528,6 +634,22 @@ int main() {
   
   // Prevent main from exiting with an infinite loop.
   while (true) {
-    wait(100, msec);
+    if (AUTON_LOCKED  && DEBUG_MODE) {
+      std::stringstream top;
+      std::stringstream bottom;
+      top << "[" << round(topLeft.temperature(temperatureUnits::fahrenheit)) << 
+        "] [" << round(topRight.temperature(temperatureUnits::fahrenheit)) << "]";
+      bottom << "[" << round(bottomLeft.temperature(temperatureUnits::fahrenheit)) << 
+        "] [" << round(bottomRight.temperature(temperatureUnits::fahrenheit)) << "]";
+
+      Controller1.Screen.setCursor(1, 1);
+      Controller1.Screen.print(top.str().c_str());
+      Controller1.Screen.newLine();
+      Controller1.Screen.print(bottom.str().c_str());
+      Controller1.Screen.newLine();
+    }
+
+    wait(1000, msec);
+    Controller1.Screen.clearScreen();
   }
 }

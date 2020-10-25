@@ -10,7 +10,7 @@ extern motor bottomRight;
 extern motor intakeLeft;
 extern motor intakeRight;
 extern motor intakeRoller;
-extern motor flywheel;
+extern motor topIndexer;
 extern controller Controller1;
 
 /**
