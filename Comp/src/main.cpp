@@ -1,26 +1,245 @@
 // ---- START VEXCODE CONFIGURED DEVICES ----
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
+// topLeft              motor         1               
+// backLeft             motor         2               
+// topRight             motor         9               
+// backRight            motor         10              
+// intakeLeft           motor         4               
+// indexer              motor         6               
+// shooter              motor         3               
+// Controller1          controller                    
+// intakeRight          motor         5               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// topLeft              motor         1               
+// backLeft             motor         2               
+// topRight             motor         9               
+// backRight            motor         10              
+// intakeLeft           motor         4               
+// indexer              motor         6               
+// shooter              motor         3               
+// Controller1          controller                    
+// intakeRight          motor         5               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// topLeft              motor         1               
+// backLeft             motor         2               
+// topRight             motor         9               
+// backRight            motor         10              
+// intakeLeft           motor         4               
+// indexer              motor         6               
+// shooter              motor         3               
+// Controller1          controller                    
+// intakeRight          motor         5               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// topLeft              motor         1               
+// backLeft             motor         2               
+// topRight             motor         9               
+// backRight            motor         10              
+// intakeLeft           motor         4               
+// indexer              motor         6               
+// shooter           motor         3               
+// Controller1          controller                    
+// intakeRight          motor         5               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// topLeft              motor         1               
+// backLeft             motor         2               
+// topRight             motor         9               
+// backRight            motor         10              
+// intakeLeft           motor         4               
+// indexer         motor         6               
+// shooter           motor         3               
+// Controller1          controller                    
+// intakeRight          motor         5               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// topLeft              motor         1               
+// backLeft             motor         2               
+// topRight             motor         9               
+// backRight          motor         10              
+// intakeLeft           motor         4               
+// indexer         motor         6               
+// shooter           motor         3               
+// Controller1          controller                    
+// intakeRight          motor         5               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// topLeft              motor         1               
+// backLeft           motor         2               
+// topRight             motor         9               
+// backRight          motor         10              
+// intakeLeft           motor         4               
+// indexer         motor         6               
+// shooter           motor         3               
+// Controller1          controller                    
+// intakeRight          motor         5               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// topLeft              motor         1               
+// backLeft           motor         2               
+// topRight             motor         21              
+// backRight          motor         10              
+// intakeLeft           motor         4               
+// indexer         motor         6               
+// shooter           motor         3               
+// Controller1          controller                    
+// intakeRight          motor         5               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
 // topLeft              motor         12              
-// bottomLeft           motor         2               
+// backLeft           motor         2               
+// topRight             motor         21              
+// backRight          motor         10              
+// intakeLeft           motor         4               
+// indexer         motor         6               
+// shooter           motor         3               
+// Controller1          controller                    
+// intakeRight          motor         5               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// topLeft              motor         12              
+// backLeft           motor         2               
+// topRight             motor         21              
+// backRight          motor         11              
+// intakeLeft           motor         4               
+// indexer         motor         6               
+// shooter           motor         3               
+// Controller1          controller                    
+// intakeRight          motor         5               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// topLeft              motor         12              
+// backLeft           motor         2               
+// topRight             motor         21              
+// backRight          motor         11              
+// intakeLeft           motor         4               
+// indexer         motor         7               
+// shooter           motor         3               
+// Controller1          controller                    
+// intakeRight          motor         5               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// topLeft              motor         12              
+// backLeft           motor         2               
+// topRight             motor         21              
+// backRight          motor         11              
+// intakeLeft           motor         4               
+// indexer         motor         7               
+// shooter           motor         8               
+// Controller1          controller                    
+// intakeRight          motor         5               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// topLeft              motor         12              
+// backLeft           motor         2               
 // topRight             motor         3               
-// bottomRight          motor         11              
-// intakeLeft           motor         5               
-// intakeRight          motor         6               
-// intakeRoller         motor         7               
-// topIndexer           motor         8               
+// backRight          motor         11              
+// intakeLeft           motor         4               
+// indexer         motor         7               
+// shooter           motor         8               
+// Controller1          controller                    
+// intakeRight          motor         5               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// topLeft              motor         12              
+// backLeft           motor         2               
+// topRight             motor         3               
+// backRight          motor         11              
+// intakeLeft           motor         4               
+// indexer         motor         7               
+// shooter           motor         8               
+// Controller1          controller                    
+// intakeRight          motor         5               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// topLeft              motor         12              
+// backLeft           motor         2               
+// topRight             motor         3               
+// backRight          motor         11              
+// intakeLeft           motor         4               
+// indexer         motor         7               
+// shooter           motor         8               
 // Controller1          controller                    
 // ---- END VEXCODE CONFIGURED DEVICES ----
 // ---- START VEXCODE CONFIGURED DEVICES ----
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
 // topLeft              motor         12              
-// bottomLeft           motor         2               
+// backLeft           motor         2               
 // topRight             motor         3               
-// bottomRight          motor         11              
+// backRight          motor         11              
+// intakeLeft           motor         5               
+// indexer         motor         7               
+// shooter           motor         8               
+// Controller1          controller                    
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// topLeft              motor         12              
+// backLeft           motor         2               
+// topRight             motor         3               
+// backRight          motor         11              
+// intakeLeft           motor         5               
+// intakeRight          motor         4               
+// indexer         motor         7               
+// shooter           motor         8               
+// Controller1          controller                    
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// topLeft              motor         12              
+// backLeft           motor         2               
+// topRight             motor         3               
+// backRight          motor         11              
 // intakeLeft           motor         5               
 // intakeRight          motor         6               
-// intakeRoller         motor         7               
+// indexer         motor         7               
+// shooter           motor         8               
+// Controller1          controller                    
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// topLeft              motor         12              
+// backLeft           motor         2               
+// topRight             motor         3               
+// backRight          motor         11              
+// intakeLeft           motor         5               
+// intakeRight          motor         6               
+// indexer         motor         7               
 // flywheel             motor         8               
 // Controller1          controller                    
 // ---- END VEXCODE CONFIGURED DEVICES ----
@@ -28,12 +247,12 @@
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
 // topLeft              motor         1               
-// bottomLeft           motor         2               
+// backLeft           motor         2               
 // topRight             motor         3               
-// bottomRight          motor         11              
+// backRight          motor         11              
 // intakeLeft           motor         5               
 // intakeRight          motor         6               
-// intakeRoller         motor         7               
+// indexer         motor         7               
 // flywheel             motor         8               
 // Controller1          controller                    
 // ---- END VEXCODE CONFIGURED DEVICES ----
@@ -41,12 +260,12 @@
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
 // topLeft              motor         1               
-// bottomLeft           motor         2               
+// backLeft           motor         2               
 // topRight             motor         3               
-// bottomRight          motor         4               
+// backRight          motor         4               
 // intakeLeft           motor         5               
 // intakeRight          motor         6               
-// intakeRoller         motor         7               
+// indexer         motor         7               
 // flywheel             motor         8               
 // Controller1          controller                    
 // ---- END VEXCODE CONFIGURED DEVICES ----
@@ -54,12 +273,12 @@
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
 // topLeft              motor         1               
-// bottomLeft           motor         2               
+// backLeft           motor         2               
 // topRight             motor         3               
-// bottomRight          motor         4               
+// backRight          motor         4               
 // intakeLeft           motor         5               
 // intakeRight          motor         6               
-// intakeRoller         motor         7               
+// indexer         motor         7               
 // flywheel             motor         8               
 // Controller1          controller                    
 // ---- END VEXCODE CONFIGURED DEVICES ----
@@ -93,12 +312,12 @@ bool AUTON_LOCKED = false;
 
 double averageEncoderVal() {
   return (topLeft.position(deg) + topRight.position(deg) +
-    bottomLeft.position(deg) + bottomRight.position(deg))/4;
+    backLeft.position(deg) + backRight.position(deg))/4;
 }
 
 void accelVertical(double v, double inches) {
   topLeft.resetPosition(); topRight.resetPosition(); 
-  bottomLeft.resetPosition(); bottomRight.resetPosition();
+  backLeft.resetPosition(); backRight.resetPosition();
 
   double error; double desired = inches * INCH_MULT;
   double justify = v / (desired*desired);
@@ -108,20 +327,20 @@ void accelVertical(double v, double inches) {
     if (error >= -5 && error <= 5) {
       topLeft.stop(brake);
       topRight.stop(brake);
-      bottomLeft.stop(brake);
-      bottomRight.stop(brake);
+      backLeft.stop(brake);
+      backRight.stop(brake);
       break;
     }
 
     double pwr = justify * averageEncoderVal() * averageEncoderVal() + 35;
 
-    topLeft.spin(fwd, pwr, pct); topRight.spin(fwd, pwr, pct); bottomLeft.spin(fwd, pwr, pct); bottomRight.spin(fwd, pwr, pct); 
+    topLeft.spin(fwd, pwr, pct); topRight.spin(fwd, pwr, pct); backLeft.spin(fwd, pwr, pct); backRight.spin(fwd, pwr, pct); 
   }
 }
 
 void accelRight(double v, double inches) {
   topLeft.resetPosition(); topRight.resetPosition(); 
-  bottomLeft.resetPosition(); bottomRight.resetPosition();
+  backLeft.resetPosition(); backRight.resetPosition();
 
   double error; double desired = inches * INCH_MULT;
   double justify = v / (desired*desired);
@@ -131,20 +350,20 @@ void accelRight(double v, double inches) {
     if (error >= -5 && error <= 5) {
       topLeft.stop(brake);
       topRight.stop(brake);
-      bottomLeft.stop(brake);
-      bottomRight.stop(brake);
+      backLeft.stop(brake);
+      backRight.stop(brake);
 
       break;
     }
     double pwr = justify * topLeft.position(deg) * topLeft.position(deg) + 35;
     topLeft.spin(fwd, pwr, pct); topRight.spin(fwd, -1 * pwr, pct);
-    bottomLeft.spin(fwd, -1 * pwr, pct); bottomRight.spin(fwd, pwr, pct); 
+    backLeft.spin(fwd, -1 * pwr, pct); backRight.spin(fwd, pwr, pct); 
   }
 }
 
 void accelLeft(double v, double inches) {
   topLeft.resetPosition(); topRight.resetPosition(); 
-  bottomLeft.resetPosition(); bottomRight.resetPosition();
+  backLeft.resetPosition(); backRight.resetPosition();
 
   double error; double desired = inches * INCH_MULT;
   double justify = v / (desired*desired);
@@ -154,43 +373,43 @@ void accelLeft(double v, double inches) {
     if (error >= -5 && error <= 5) {
       topLeft.stop(brake);
       topRight.stop(brake);
-      bottomLeft.stop(brake);
-      bottomRight.stop(brake);
+      backLeft.stop(brake);
+      backRight.stop(brake);
 
       break;
     }
     double pwr = justify * topRight.position(deg) * topRight.position(deg) + 35;
     topLeft.spin(fwd, -1*pwr, pct); topRight.spin(fwd, pwr, pct);
-    bottomLeft.spin(fwd, pwr, pct); bottomRight.spin(fwd, -1*pwr, pct); 
+    backLeft.spin(fwd, pwr, pct); backRight.spin(fwd, -1*pwr, pct); 
   }
 }
  
 void vertical(double v, double inches) {
   topLeft.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
-  bottomLeft.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
+  backLeft.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
   topRight.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
-  bottomRight.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, true);
+  backRight.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, true);
 }
  
 void turn90(double v, double dir) {
   topLeft.rotateFor(dir * 350, deg, v, velocityUnits::pct, false);
   topRight.rotateFor(-1 * dir * 350, deg, v, velocityUnits::pct, false);
-  bottomLeft.rotateFor(dir * 350, deg, v, velocityUnits::pct, false);
-  bottomRight.rotateFor(-1 * dir * 350, deg, v, velocityUnits::pct, true);
+  backLeft.rotateFor(dir * 350, deg, v, velocityUnits::pct, false);
+  backRight.rotateFor(-1 * dir * 350, deg, v, velocityUnits::pct, true);
 }
  
 void left_strafe(double v, double inches) {
   topLeft.rotateFor(-1 * inches * INCH_MULT, deg, v, velocityUnits::pct, false);
   topRight.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
-  bottomLeft.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
-  bottomRight.rotateFor(-1 * inches * INCH_MULT, deg, v, velocityUnits::pct, true);
+  backLeft.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
+  backRight.rotateFor(-1 * inches * INCH_MULT, deg, v, velocityUnits::pct, true);
 }
  
 void right_strafe(double v, double inches) {
   topLeft.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
   topRight.rotateFor(-1 * inches * INCH_MULT, deg, v, velocityUnits::pct, false);
-  bottomLeft.rotateFor(-1 * inches * INCH_MULT, deg, v, velocityUnits::pct, false);
-  bottomRight.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, true);
+  backLeft.rotateFor(-1 * inches * INCH_MULT, deg, v, velocityUnits::pct, false);
+  backRight.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, true);
 }
  
 void flipout(){
@@ -202,32 +421,32 @@ void flipout(){
 }
 
 void deploy(){
-  intakeRoller.spin(fwd, 25, percentUnits:: pct);
+  indexer.spin(fwd, 25, percentUnits:: pct);
   wait(0.75, sec);
-  intakeRoller.stop();
+  indexer.stop();
 }
 
 void vertical_noBlock(double v, double inches) {
   topLeft.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
-  bottomLeft.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
+  backLeft.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
   topRight.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
-  bottomRight.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
+  backRight.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
 }
 
 void intake(double v, double time_intaking) {
-  intakeRoller.spin(directionType::rev, 100, percentUnits::pct);
+  indexer.spin(directionType::rev, 100, percentUnits::pct);
   intakeLeft.spin(fwd, 1 * v, pct);
   intakeRight.spin(fwd, v, pct);
   wait(time_intaking, timeUnits::sec); 
-  intakeRoller.stop();
+  indexer.stop();
   intakeRight.stop();
   intakeLeft.stop();
 }
 
 void run_top(double v, double time_flywheel) {
-  topIndexer.spin(fwd, v, pct);
+  shooter.spin(fwd, v, pct);
   wait(time_flywheel, timeUnits::sec);
-  topIndexer.stop();
+  shooter.stop();
 }
   
 void pre_auton(void) {
@@ -270,7 +489,7 @@ void autonomous(void) {
     intake(100, 1.7); // intake the first ball
 
     vertical(100, 10); // go into goal
-    topIndexer.spin(directionType::fwd, 100, percentUnits::pct);
+    shooter.spin(directionType::fwd, 100, percentUnits::pct);
     wait(0.2, timeUnits::sec);
 
     intake(100, 1.7); // cycle balls
@@ -287,11 +506,11 @@ void autonomous(void) {
     turn90(100, -1); // turn left 90 deg
     vertical(100, 20); // go forward into the goal
     
-    intakeRoller.spin(directionType::rev, 100, percentUnits::pct);
+    indexer.spin(directionType::rev, 100, percentUnits::pct);
     intakeLeft.spin(fwd, -100, pct);
     intakeRight.spin(fwd, 100, pct);
     wait(1.7, timeUnits::sec); // cycle balls
-    intakeRoller.stop();
+    indexer.stop();
     intakeRight.stop();
     intakeLeft.stop();
     
@@ -311,7 +530,7 @@ void autonomous(void) {
 
     vertical(100, 10); // go into goal
 
-    topIndexer.spin(directionType::fwd, 100, percentUnits::pct);
+    shooter.spin(directionType::fwd, 100, percentUnits::pct);
     wait(0.2, timeUnits::sec);
 
     intake(100, 1.7); // cycle balls
@@ -328,11 +547,11 @@ void autonomous(void) {
     turn90(100, 1); // turn right 90 deg
     vertical(100, 20); // go forward into the goal
     
-    intakeRoller.spin(directionType::rev, 100, percentUnits::pct);
+    indexer.spin(directionType::rev, 100, percentUnits::pct);
     intakeLeft.spin(fwd, -100, pct);
     intakeRight.spin(fwd, 100, pct);
     wait(1.7, timeUnits::sec); // cycle balls
-    intakeRoller.stop();
+    indexer.stop();
     intakeRight.stop();
     intakeLeft.stop();
     
@@ -344,9 +563,9 @@ void autonomous(void) {
     intake(100, 0.3); // move while intaking
 
     turn90(100, -0.4);
-    topIndexer.spin(fwd, 100, pct);
+    shooter.spin(fwd, 100, pct);
     wait(0.3, sec);
-    intakeRoller.spin(fwd, 100, pct); // ball in hole
+    indexer.spin(fwd, 100, pct); // ball in hole
     wait(0.5, sec);
 
     vertical(100, -30); // move back 
@@ -355,7 +574,7 @@ void autonomous(void) {
 
     turn90(100, -90); // turn left to go to mid goal
     vertical(100, 50);
-    intakeRoller.spin(fwd, 100, pct);
+    indexer.spin(fwd, 100, pct);
     wait(0.8, sec); // ball in hole mid goal
 
     // at this point we have 0 balls in the bot and scored another ball in mid goal
@@ -367,7 +586,7 @@ void autonomous(void) {
     intake(100, 0.5); // intake ball
     vertical(100, 10); // move into goal
 
-    intakeRoller.spin(fwd, 100, pct);
+    indexer.spin(fwd, 100, pct);
     wait(0.5, sec);
 
   } else if (SELECTED_AUTON == 4) {
@@ -376,9 +595,9 @@ void autonomous(void) {
     intake(100, 0.3); // move while intaking
 
     turn90(100, 0.4);
-    topIndexer.spin(fwd, 100, pct);
+    shooter.spin(fwd, 100, pct);
     wait(0.3, sec);
-    intakeRoller.spin(fwd, 100, pct); // ball in hole
+    indexer.spin(fwd, 100, pct); // ball in hole
     wait(0.5, sec);
 
     vertical(100, -30); // move back 
@@ -387,7 +606,7 @@ void autonomous(void) {
 
     turn90(100, 90); // turn right  to go to jmid goal
     vertical(100, 50);
-    intakeRoller.spin(fwd, 100, pct);
+    indexer.spin(fwd, 100, pct);
     wait(0.8, sec); // ball in hole mid goal
 
     // at this point we have 0 balls in the bot and scored another ball in mid goal
@@ -399,38 +618,38 @@ void autonomous(void) {
     intake(100, 0.5); // intake ball
     vertical(100, 10); // move into goal
 
-    intakeRoller.spin(fwd, 100, pct);
+    indexer.spin(fwd, 100, pct);
     wait(0.5, sec);
  } else if (SELECTED_AUTON == 5) { // skills
     deploy();
-    bottomLeft.spin(fwd, 100, pct);
-    bottomRight.spin(reverse, 100, pct); 
+    backLeft.spin(fwd, 100, pct);
+    backRight.spin(reverse, 100, pct); 
     topRight.spin(fwd, 60, pct);
     topLeft.spin(fwd, 35, pct);
     wait(330, msec);
-    bottomLeft.stop(brake);
-    bottomRight.stop(brake);
+    backLeft.stop(brake);
+    backRight.stop(brake);
     topRight.stop(brake);
     topLeft.stop(brake);
     wait(0.4, sec);
 
     // shoot first goal
-    topIndexer.spin(fwd, 75, pct);
+    shooter.spin(fwd, 75, pct);
     wait(1, sec);
-    intakeRoller.spin(reverse, 100, pct);
+    indexer.spin(reverse, 100, pct);
     wait(0.5, sec);
-    intakeRoller.stop();
+    indexer.stop();
     wait(0.3, sec);
-    topIndexer.stop();
+    shooter.stop();
 
     // position for intaking second ball
-    bottomLeft.spin(fwd, 100, pct);
-    bottomRight.spin(reverse, 100, pct); 
+    backLeft.spin(fwd, 100, pct);
+    backRight.spin(reverse, 100, pct); 
     topRight.spin(fwd, 60, pct);
     topLeft.spin(fwd, 35, pct);
     wait(500, msec);
-    bottomLeft.stop(brake);
-    bottomRight.stop(brake);
+    backLeft.stop(brake);
+    backRight.stop(brake);
     topRight.stop(brake);
     topLeft.stop(brake);
     wait(0.4, sec);
@@ -445,11 +664,11 @@ void autonomous(void) {
     wait(1, sec);
 
     // intake second ball
-    intakeRoller.spin(reverse, 100, pct);
+    indexer.spin(reverse, 100, pct);
     intakeRight.spin(reverse, 100, pct);
     intakeLeft.spin(reverse, 100, pct);
     accelVertical(70, 42);
-    intakeRoller.stop();
+    indexer.stop();
     intakeRight.stop();
     intakeLeft.stop();
 
@@ -458,19 +677,19 @@ void autonomous(void) {
     wait(0.2, sec);
 
     // shoot 2nd shot
-    topIndexer.spin(fwd, 100, pct);
+    shooter.spin(fwd, 100, pct);
     wait(1, sec);
-    intakeRoller.spin(reverse, 100, pct);
+    indexer.spin(reverse, 100, pct);
     wait(0.5, sec);
-    intakeRoller.stop();
+    indexer.stop();
     wait(0.3, sec);
-    topIndexer.stop();
+    shooter.stop();
 
     // position and intake for 3rd shot
     turn90(100, 1);
     wait(0.4, sec);
 
-    intakeRoller.spin(reverse, 100, pct);
+    indexer.spin(reverse, 100, pct);
     intakeRight.spin(reverse, 100, pct);
     intakeLeft.spin(reverse, 100, pct);
     accelVertical(75, 35);
@@ -481,37 +700,37 @@ void autonomous(void) {
     vertical(100, 5);
     wait(0.2, sec);
 
-    intakeRoller.stop();
+    indexer.stop();
     intakeRight.stop();
     intakeLeft.stop();
 
     // shoot third shot
-    topIndexer.spin(fwd, 100, pct);
+    shooter.spin(fwd, 100, pct);
     wait(0.5, sec);
-    intakeRoller.spin(reverse, 100, pct);
+    indexer.spin(reverse, 100, pct);
     wait(0.6, sec);
-    intakeRoller.stop();
+    indexer.stop();
     wait(0.5, sec);
-    topIndexer.stop();
+    shooter.stop();
 
     // fourth
     // vertical(100, -12);
     // turn90(100, 2);
 
-    // intakeRoller.spin(reverse, 100, pct);
+    // indexer.spin(reverse, 100, pct);
     // intakeRight.spin(reverse, 100, pct);
     // intakeLeft.spin(reverse, 100, pct);
     // accelVertical(100, 30);
-    // intakeRoller.stop();
+    // indexer.stop();
     // intakeRight.stop();
     // intakeLeft.stop();
 
     // turn90(100, -1.1);
     // flywheel.spin(fwd, 100, pct);
     // wait(0.5, sec);
-    // intakeRoller.spin(reverse, 100, pct);
+    // indexer.spin(reverse, 100, pct);
     // wait(0.6, sec);
-    // intakeRoller.stop();
+    // indexer.stop();
     // wait(0.3, sec);
     // flywheel.stop();
   } else if (SELECTED_AUTON == 6) {
@@ -525,91 +744,31 @@ void usercontrol(void) {
 
   topLeft.setBrake(brake);
   topRight.setBrake(brake); 
-  bottomLeft.setBrake(brake);
-  bottomRight.setBrake(brake);
+  backLeft.setBrake(brake);
+  backRight.setBrake(brake);
  
   while (true) {
-    double front_left = (double)(Controller1.Axis3.position(pct) +
-                                Controller1.Axis4.position(pct));
-    double back_left = (double)(Controller1.Axis3.position(pct) -
-                               Controller1.Axis4.position(pct));
-    double front_right = (double)(Controller1.Axis3.position(pct) -
-                                 Controller1.Axis4.position(pct));
-    double back_right = (double)(Controller1.Axis3.position(pct) +
-                                Controller1.Axis4.position(pct));
+    topLeft.spin(fwd, nja_md*(Controller1.Axis3.position(pct) + 0.7*Controller1.Axis1.position()), pct);
+    topRight.spin(fwd, nja_md*(Controller1.Axis3.position(pct) - 0.7*Controller1.Axis1.position()), pct);
+    backLeft.spin(fwd, nja_md*(Controller1.Axis3.position(pct) + 0.7*Controller1.Axis1.position()), pct);
+    backRight.spin(fwd, nja_md*(Controller1.Axis3.position(pct) - 0.7*Controller1.Axis1.position()), pct);
  
-   // Find the largest possible sum of X and Y
-    double max_raw_sum = (double)(abs(Controller1.Axis3.position(pct)) +
-                                 abs(Controller1.Axis4.position(pct)));
- 
-    // Find the largest joystick value
-    double max_XYstick_value =
-       (double)(std::max(abs(Controller1.Axis3.position(pct)),
-                         abs(Controller1.Axis4.position(pct))));
- 
-    // The largest sum will be scaled down to the largest joystick value, and
-    // the others will be scaled by the same amount to preserve directionality
-    if (max_raw_sum != 0) {
-      front_left = front_left / max_raw_sum * max_XYstick_value;
-      back_left = back_left / max_raw_sum * max_XYstick_value;
-      front_right = front_right / max_raw_sum * max_XYstick_value;
-      back_right = back_right / max_raw_sum * max_XYstick_value;
-    }
- 
-    // Now to Controller1sider rotation
-    // Naively add the rotational axis
-    front_left = front_left + (TURN_MULT * Controller1.Axis1.position(pct));
-    back_left = back_left + (TURN_MULT * Controller1.Axis1.position(pct));
-    front_right = front_right - (TURN_MULT * Controller1.Axis1.position(pct));
-    back_right = back_right - (TURN_MULT * Controller1.Axis1.position(pct));
- 
-    // What is the largest sum, or is 100 larger?
-    max_raw_sum =
-        std::max(std::abs(front_left),
-                std::max(std::abs(back_left),
-                         std::max(std::abs(front_right),
-                                  std::max(std::abs(back_right), 100.0))));
- 
-    // Scale everything down by the factor that makes the largest only 100, if
-    // it was over    wait(100, msec);
-    front_left = front_left / max_raw_sum * 100.0;
-    back_left = back_left / max_raw_sum * 100.0;
-    front_right = front_right / max_raw_sum * 100.0;
-    back_right = back_right / max_raw_sum * 100.0;
- 
-    // Write the manipulated values out to the motors
-    bottomRight.spin(fwd, back_right * nja_md, pct);
-    topLeft.spin(fwd, front_left * nja_md, pct);
-    bottomLeft.spin(fwd, back_left * nja_md, pct);
-    topRight.spin(fwd, front_right * nja_md, pct);
- 
-    if (Controller1.ButtonR2.pressing()) {
+    if (Controller1.ButtonL1.pressing()) {
+      intakeLeft.spin(reverse, intakeSpeed, pct);
+      intakeRight.spin(reverse, intakeSpeed, pct);
+      indexer.spin(reverse, intakeSpeed, pct);
+      shooter.spin(reverse, intakeSpeed, pct);
+    } else if (Controller1.ButtonR1.pressing()) {
       intakeLeft.spin(fwd, intakeSpeed, pct);
       intakeRight.spin(fwd, intakeSpeed, pct);
-      intakeRoller.spin(fwd, intakeSpeed, pct);
-      topIndexer.spin(fwd, intakeSpeed, pct);
-    } else if (Controller1.ButtonL2.pressing()) {
-      intakeLeft.spin(reverse, intakeSpeed, pct);
-      intakeRight.spin(reverse, intakeSpeed, pct);
-      intakeRoller.spin(reverse, intakeSpeed, pct);
-      topIndexer.spin(fwd, intakeSpeed, pct);
-    } else if (Controller1.ButtonL1.pressing()) {
-      intakeRoller.spin(reverse, intakeSpeed, pct);
-      topIndexer.spin(reverse, intakeSpeed, pct);
-    } else if (Controller1.ButtonR1.pressing()) {
-      intakeLeft.spin(reverse, intakeSpeed, pct);
-      intakeRight.spin(reverse, intakeSpeed, pct);
+      indexer.spin(fwd, intakeSpeed, pct);
+      shooter.spin(fwd, intakeSpeed, pct);
     } else {
       intakeLeft.stop(brake);
       intakeRight.stop(brake);
-      intakeRoller.stop(brake);
-      topIndexer.stop(brake);
+      indexer.stop(brake);
+      shooter.stop(brake);
     }
-
-    if (Controller1.ButtonR1.pressing()) {
-      intakeLeft.spin(reverse, intakeSpeed, pct);
-      intakeRight.spin(reverse, intakeSpeed, pct);
-    } 
 
     if (Controller1.ButtonB.pressing()) {
       nja_md = 0.3;
@@ -639,8 +798,8 @@ int main() {
       std::stringstream bottom;
       top << "[" << round(topLeft.temperature(temperatureUnits::fahrenheit)) << 
         "] [" << round(topRight.temperature(temperatureUnits::fahrenheit)) << "]";
-      bottom << "[" << round(bottomLeft.temperature(temperatureUnits::fahrenheit)) << 
-        "] [" << round(bottomRight.temperature(temperatureUnits::fahrenheit)) << "]";
+      bottom << "[" << round(backLeft.temperature(temperatureUnits::fahrenheit)) << 
+        "] [" << round(backRight.temperature(temperatureUnits::fahrenheit)) << "]";
 
       Controller1.Screen.setCursor(1, 1);
       Controller1.Screen.print(top.str().c_str());
