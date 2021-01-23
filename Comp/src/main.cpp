@@ -303,115 +303,83 @@ using namespace vex;
  
 competition Competition;
  
-bool DEBUG_MODE = true;
-float PI = 3.14159265;
-float TURN_MULT = 0.6;
-float INCH_MULT = 28;
+double PI = 3.14159265;
+double TURN_MULT = 0.6; // slow down driver turn speed
+double INCH_MULT = 28;
+
+int intakeSpeed = 100;
+double nja_md = 1;
+
+int CUSTOM = 0;
+// function, p1, p2
+double CUSTOM_CONFIG[3] = {0, 100, 0};
+std::string CUSTOM_NAME[6] = {"V", "T", "A", "I", "S", "C"}; 
+
 int SELECTED_AUTON = 5;
 bool AUTON_LOCKED = false;
-
-double averageEncoderVal() {
-  return (topLeft.position(deg) + topRight.position(deg) +
-    backLeft.position(deg) + backRight.position(deg))/4;
-}
-
-void accelVertical(double v, double inches) {
-  topLeft.resetPosition(); topRight.resetPosition(); 
-  backLeft.resetPosition(); backRight.resetPosition();
-
-  double error; double desired = inches * INCH_MULT;
-  double justify = v / (desired*desired);
-
-  while (true) {
-    error = desired - averageEncoderVal();
-    if (error >= -5 && error <= 5) {
-      topLeft.stop(brake);
-      topRight.stop(brake);
-      backLeft.stop(brake);
-      backRight.stop(brake);
-      break;
-    }
-
-    double pwr = justify * averageEncoderVal() * averageEncoderVal() + 35;
-
-    topLeft.spin(fwd, pwr, pct); topRight.spin(fwd, pwr, pct); backLeft.spin(fwd, pwr, pct); backRight.spin(fwd, pwr, pct); 
-  }
-}
-
-void accelRight(double v, double inches) {
-  topLeft.resetPosition(); topRight.resetPosition(); 
-  backLeft.resetPosition(); backRight.resetPosition();
-
-  double error; double desired = inches * INCH_MULT;
-  double justify = v / (desired*desired);
-
-  while (true) {
-    error = desired - topLeft.position(deg);
-    if (error >= -5 && error <= 5) {
-      topLeft.stop(brake);
-      topRight.stop(brake);
-      backLeft.stop(brake);
-      backRight.stop(brake);
-
-      break;
-    }
-    double pwr = justify * topLeft.position(deg) * topLeft.position(deg) + 35;
-    topLeft.spin(fwd, pwr, pct); topRight.spin(fwd, -1 * pwr, pct);
-    backLeft.spin(fwd, -1 * pwr, pct); backRight.spin(fwd, pwr, pct); 
-  }
-}
-
-void accelLeft(double v, double inches) {
-  topLeft.resetPosition(); topRight.resetPosition(); 
-  backLeft.resetPosition(); backRight.resetPosition();
-
-  double error; double desired = inches * INCH_MULT;
-  double justify = v / (desired*desired);
-
-  while (true) {
-    error = desired - topRight.position(deg);
-    if (error >= -5 && error <= 5) {
-      topLeft.stop(brake);
-      topRight.stop(brake);
-      backLeft.stop(brake);
-      backRight.stop(brake);
-
-      break;
-    }
-    double pwr = justify * topRight.position(deg) * topRight.position(deg) + 35;
-    topLeft.spin(fwd, -1*pwr, pct); topRight.spin(fwd, pwr, pct);
-    backLeft.spin(fwd, pwr, pct); backRight.spin(fwd, -1*pwr, pct); 
-  }
-}
  
-void vertical(double v, double inches) {
-  topLeft.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
-  backLeft.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
-  topRight.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
-  backRight.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, true);
+void vertical(double v, double dist) {
+  topLeft.rotateFor(dist * INCH_MULT, deg, v, velocityUnits::pct, false);
+  backLeft.rotateFor(dist * INCH_MULT, deg, v, velocityUnits::pct, false);
+  topRight.rotateFor(dist * INCH_MULT, deg, v, velocityUnits::pct, false);
+  backRight.rotateFor(dist * INCH_MULT, deg, v, velocityUnits::pct, true);
+}
+
+void avertical (double v, double dist) {
+  topLeft.rotateFor(dist * INCH_MULT, deg, v, velocityUnits::pct, false);
+  backLeft.rotateFor(dist * INCH_MULT, deg, v, velocityUnits::pct, false);
+  topRight.rotateFor(dist * INCH_MULT, deg, v, velocityUnits::pct, false);
+  backRight.rotateFor(dist * INCH_MULT, deg, v, velocityUnits::pct, false);
 }
  
 void turn90(double v, double dir) {
-  topLeft.rotateFor(dir * 450, deg, v, velocityUnits::pct, false);
-  topRight.rotateFor(dir * -450, deg, v, velocityUnits::pct, false);
-  backLeft.rotateFor(dir * 450, deg, v, velocityUnits::pct, false);
-  backRight.rotateFor(dir * -450, deg, v, velocityUnits::pct, true);
+  topLeft.rotateFor(dir * 400, deg, v, velocityUnits::pct, false);
+  topRight.rotateFor(dir * -400, deg, v, velocityUnits::pct, false);
+  backLeft.rotateFor(dir * 400, deg, v, velocityUnits::pct, false);
+  backRight.rotateFor(dir * -400, deg, v, velocityUnits::pct, true);
 }
- 
-void left_strafe(double v, double inches) {
-  topLeft.rotateFor(-1 * inches * INCH_MULT, deg, v, velocityUnits::pct, false);
-  topRight.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
-  backLeft.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
-  backRight.rotateFor(-1 * inches * INCH_MULT, deg, v, velocityUnits::pct, true);
+
+void arms (double v) {
+  intakeLeft.spin(reverse, v, pct); intakeRight.spin(reverse, v, pct);
 }
- 
-void right_strafe(double v, double inches) {
-  topLeft.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
-  topRight.rotateFor(-1 * inches * INCH_MULT, deg, v, velocityUnits::pct, false);
-  backLeft.rotateFor(-1 * inches * INCH_MULT, deg, v, velocityUnits::pct, false);
-  backRight.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, true);
+
+void haltArms () { 
+  intakeLeft.stop(); intakeRight.stop(); 
 }
- 
+
+void intake(double v) {
+  indexer.spin(directionType::rev, v, percentUnits::pct);
+  intakeLeft.spin(reverse, v, pct);
+  intakeRight.spin(reverse, v, pct);
+}
+
+void haltIntake() {
+  indexer.stop();
+  intakeRight.stop();
+  intakeLeft.stop();
+}
+
+void shoot (double v) { 
+  shooter.spin(fwd, v, pct); 
+}
+
+void haltShoot () { 
+  shooter.stop(); 
+}
+
+void cycle (double v) {
+  indexer.spin(reverse, v, pct);
+  intakeLeft.spin(reverse, v, pct);
+  intakeRight.spin(reverse, v, pct);
+  shooter.spin(fwd, v, pct);
+}
+
+void haltCycle () {
+  indexer.stop(); 
+  intakeLeft.stop(); intakeRight.stop(); 
+  shooter.stop();
+}
+
 void flipout(){
   intakeLeft.spin(fwd, 50, pct);
   intakeRight.spin(fwd, 50, pct);
@@ -426,82 +394,103 @@ void deploy(){
   indexer.stop();
 }
 
-void avertical (double v, double inches) {
-  topLeft.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
-  backLeft.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
-  topRight.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
-  backRight.rotateFor(inches * INCH_MULT, deg, v, velocityUnits::pct, false);
-}
+void selector () {
+  // inputs
+  if (!AUTON_LOCKED) {
+    if (Controller1.ButtonUp.pressing() && SELECTED_AUTON < 8) {
+      SELECTED_AUTON++;
+    } 
 
-void arms (double v) {
-  intakeLeft.spin(reverse, v, pct); intakeRight.spin(reverse, v, pct);
-}
+    if (Controller1.ButtonDown.pressing() && SELECTED_AUTON > 1) {
+      SELECTED_AUTON--;
+    } 
 
-void haltArms () { intakeLeft.stop(); intakeRight.stop(); }
+    if (Controller1.ButtonY.pressing()) {
+      CUSTOM = 1;
+      Controller1.rumble("...");
+    }
 
-void intake(double v) {
-  indexer.spin(directionType::rev, v, percentUnits::pct);
-  intakeLeft.spin(reverse, v, pct);
-  intakeRight.spin(reverse, v, pct);
-}
+    if (Controller1.ButtonA.pressing()) {
+      AUTON_LOCKED = true;
+      Controller1.rumble(".");
+    }
 
-void haltIntake() {
-  indexer.stop();
-  intakeRight.stop();
-  intakeLeft.stop();
-}
+    // custom only joystick manip
+    if (CUSTOM == 1) {
+      CUSTOM_CONFIG[1] += 0.01 * (double) Controller1.Axis3.position(pct);
+      CUSTOM_CONFIG[2] += 0.01 * (double) Controller1.Axis2.position(pct);
+      CUSTOM_CONFIG[1] = round(10 * CUSTOM_CONFIG[1])/10; CUSTOM_CONFIG[2] = round(10 * CUSTOM_CONFIG[2])/10;
 
-void shoot (double v) { shooter.spin(fwd, v, pct); }
+      if (Controller1.ButtonRight.pressing() && CUSTOM_CONFIG[0] < 6) {
+        CUSTOM_CONFIG[0]++;
+      }
+      if (Controller1.ButtonLeft.pressing() && CUSTOM_CONFIG[0] > 0) {
+        CUSTOM_CONFIG[0]--;
+      }
+    }
 
-void haltShoot () { shooter.stop(); }
+    // render
+    if (CUSTOM == 1) {
+      std::stringstream CustomText[3];
+      CustomText[0] << "{" << CUSTOM_NAME[(int) CUSTOM_CONFIG[0]] << "}";
+      CustomText[1] << "V: " << CUSTOM_CONFIG[1];
+      CustomText[2] << "D: " << CUSTOM_CONFIG[2]; 
 
-void cycle (double v) {
-  indexer.spin(reverse, v, pct);
-  intakeLeft.spin(reverse, v, pct);
-  intakeRight.spin(reverse, v, pct);
-  shooter.spin(fwd, v, pct);
-}
-
-void haltCycle () {
-  indexer.stop(); 
-  intakeLeft.stop(); intakeRight.stop(); 
-  shooter.stop();
+      Controller1.Screen.clearScreen();
+      Controller1.Screen.setCursor(1, 1);
+      Controller1.Screen.print(CustomText[0].str().c_str());
+      Controller1.Screen.setCursor(2, 1);
+      Controller1.Screen.print(CustomText[1].str().c_str());
+      Controller1.Screen.setCursor(3, 1);
+      Controller1.Screen.print(CustomText[2].str().c_str());
+    } else {
+      std::stringstream SelectorText;
+      SelectorText << "(" << Brain.Battery.capacity() << "\%)" << " [AUT" << SELECTED_AUTON << "]"; 
+  
+      Controller1.Screen.clearScreen();
+      Controller1.Screen.setCursor(1, 1);
+      Controller1.Screen.print(SelectorText.str().c_str());
+    }
+  }
 }
   
 void pre_auton(void) {
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
- 
-  while (AUTON_LOCKED == false) {
-    if (Controller1.ButtonUp.pressing() && SELECTED_AUTON < 8) {
-      SELECTED_AUTON++;
-    } else if (Controller1.ButtonDown.pressing() && SELECTED_AUTON > 1) {
-      SELECTED_AUTON--;
-    } 
-
-    std::stringstream preAutText;
-    preAutText << "(" << Brain.Battery.capacity() << "\%)" << " [AUT" << SELECTED_AUTON << "]"; 
- 
-    Controller1.Screen.clearScreen();
-    Controller1.Screen.setCursor(1, 1);
-    Controller1.Screen.print(preAutText.str().c_str());
-
-    if (Controller1.ButtonA.pressing()) {
-      AUTON_LOCKED = true;
-      Controller1.Screen.clearScreen();
-      Controller1.Screen.setCursor(1, 1);
-      Controller1.Screen.print("LOCKED");
-      Controller1.rumble(".");
-    } 
-  }
 }
  
 void autonomous(void) {
+  if (CUSTOM == 1) {
+    if (CUSTOM_CONFIG[0] == 0) {
+      vertical(CUSTOM_CONFIG[1], CUSTOM_CONFIG[2]);
+    } else if (CUSTOM_CONFIG[0] == 1) {
+      turn90(CUSTOM_CONFIG[1], CUSTOM_CONFIG[2]);
+    } else if (CUSTOM_CONFIG[0] == 2) {
+      arms(CUSTOM_CONFIG[1]);
+      wait(CUSTOM_CONFIG[2], sec);
+      haltArms();
+    } else if (CUSTOM_CONFIG[0] == 3) {
+      intake(CUSTOM_CONFIG[1]);
+      wait(CUSTOM_CONFIG[2], sec);
+      haltIntake();
+    } else if (CUSTOM_CONFIG[0] == 4) {
+      shoot(CUSTOM_CONFIG[1]);
+      wait(CUSTOM_CONFIG[2], sec);
+      haltShoot();
+    } else if (CUSTOM_CONFIG[0] == 5) {
+      cycle(CUSTOM_CONFIG[1]);
+      wait(CUSTOM_CONFIG[2], sec);
+      haltCycle();
+    }
+    return;
+  }
+
   if (SELECTED_AUTON == 1) {
     // Right side, 1 goal
     deploy();
 
-    vertical(100, 18);
+    vertical(70, 18);
+    wait(0.3, sec);
     turn90(100, 1.5);
 
     arms(100);
@@ -572,7 +561,7 @@ void autonomous(void) {
     indexer.spin(reverse, 100, pct);
     intakeRight.spin(reverse, 100, pct);
     intakeLeft.spin(reverse, 100, pct);
-    accelVertical(70, 42);
+    //accelVertical(70, 42);
     indexer.stop();
     intakeRight.stop();
     intakeLeft.stop();
@@ -597,7 +586,7 @@ void autonomous(void) {
     indexer.spin(reverse, 100, pct);
     intakeRight.spin(reverse, 100, pct);
     intakeLeft.spin(reverse, 100, pct);
-    accelVertical(75, 35);
+    //accelVertical(75, 35);
     wait(0.2, sec);
 
     turn90(100, -0.5);
@@ -642,21 +631,21 @@ void autonomous(void) {
 }
  
 void usercontrol(void) {
-  int intakeSpeed = 100;
-  double nja_md = 1;
-
   topLeft.setBrake(brake);
   topRight.setBrake(brake); 
   backLeft.setBrake(brake);
   backRight.setBrake(brake);
- 
+
   while (true) {
-    topLeft.spin(fwd, nja_md*(Controller1.Axis3.position(pct) + 0.7*Controller1.Axis1.position()), pct);
-    topRight.spin(fwd, nja_md*(Controller1.Axis3.position(pct) - 0.7*Controller1.Axis1.position()), pct);
-    backLeft.spin(fwd, nja_md*(Controller1.Axis3.position(pct) + 0.7*Controller1.Axis1.position()), pct);
-    backRight.spin(fwd, nja_md*(Controller1.Axis3.position(pct) - 0.7*Controller1.Axis1.position()), pct);
+    if (AUTON_LOCKED) {
+      // drive train
+      topLeft.spin(fwd, nja_md*(Controller1.Axis3.position(pct) + 0.7*Controller1.Axis1.position()), pct);
+      topRight.spin(fwd, nja_md*(Controller1.Axis3.position(pct) - 0.7*Controller1.Axis1.position()), pct);
+      backLeft.spin(fwd, nja_md*(Controller1.Axis3.position(pct) + 0.7*Controller1.Axis1.position()), pct);
+      backRight.spin(fwd, nja_md*(Controller1.Axis3.position(pct) - 0.7*Controller1.Axis1.position()), pct);
+    }
  
-    if (Controller1.ButtonL1.pressing()) {
+    if (Controller1.ButtonL1.pressing()) { // cycle
       intakeLeft.spin(reverse, intakeSpeed, pct);
       intakeRight.spin(reverse, intakeSpeed, pct);
       indexer.spin(reverse, intakeSpeed, pct);
@@ -673,10 +662,13 @@ void usercontrol(void) {
       shooter.stop(brake);
     }
 
+    if (Controller1.ButtonLeft.pressing()) {
+      AUTON_LOCKED = false;
+      CUSTOM = 0;
+    }
+
     if (Controller1.ButtonB.pressing()) {
       nja_md = 0.3;
-      Controller1.Screen.setCursor(3, 1);
-      Controller1.Screen.print("[NINJA]");
     } else {
       nja_md = 1;
     }
@@ -700,7 +692,9 @@ int main() {
   
   // Prevent main from exiting with an infinite loop.
   while (true) {
-    if (AUTON_LOCKED  && DEBUG_MODE) {
+    selector();
+    
+    if (AUTON_LOCKED) {
       std::stringstream top;
       std::stringstream bottom;
       top << "[" << round(topLeft.temperature(temperatureUnits::fahrenheit)) << 
@@ -708,14 +702,17 @@ int main() {
       bottom << "[" << round(backLeft.temperature(temperatureUnits::fahrenheit)) << 
         "] [" << round(backRight.temperature(temperatureUnits::fahrenheit)) << "]";
 
+      Controller1.Screen.clearScreen();
       Controller1.Screen.setCursor(1, 1);
       Controller1.Screen.print(top.str().c_str());
       Controller1.Screen.newLine();
       Controller1.Screen.print(bottom.str().c_str());
       Controller1.Screen.newLine();
-    }
 
-    wait(1000, msec);
-    Controller1.Screen.clearScreen();
+      if (nja_md == 0.3) {
+        Controller1.Screen.setCursor(3, 1);
+        Controller1.Screen.print("[NINJA]");
+      }
+    }
   }
 }
