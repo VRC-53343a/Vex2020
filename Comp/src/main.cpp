@@ -2,277 +2,6 @@
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
 // topLeft              motor         1               
-// backLeft             motor         2               
-// topRight             motor         9               
-// backRight            motor         10              
-// intakeLeft           motor         4               
-// indexer              motor         6               
-// shooter              motor         3               
-// Controller1          controller                    
-// intakeRight          motor         5               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// topLeft              motor         1               
-// backLeft             motor         2               
-// topRight             motor         9               
-// backRight            motor         10              
-// intakeLeft           motor         4               
-// indexer              motor         6               
-// shooter              motor         3               
-// Controller1          controller                    
-// intakeRight          motor         5               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// topLeft              motor         1               
-// backLeft             motor         2               
-// topRight             motor         9               
-// backRight            motor         10              
-// intakeLeft           motor         4               
-// indexer              motor         6               
-// shooter              motor         3               
-// Controller1          controller                    
-// intakeRight          motor         5               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// topLeft              motor         1               
-// backLeft             motor         2               
-// topRight             motor         9               
-// backRight            motor         10              
-// intakeLeft           motor         4               
-// indexer              motor         6               
-// shooter           motor         3               
-// Controller1          controller                    
-// intakeRight          motor         5               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// topLeft              motor         1               
-// backLeft             motor         2               
-// topRight             motor         9               
-// backRight            motor         10              
-// intakeLeft           motor         4               
-// indexer         motor         6               
-// shooter           motor         3               
-// Controller1          controller                    
-// intakeRight          motor         5               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// topLeft              motor         1               
-// backLeft             motor         2               
-// topRight             motor         9               
-// backRight          motor         10              
-// intakeLeft           motor         4               
-// indexer         motor         6               
-// shooter           motor         3               
-// Controller1          controller                    
-// intakeRight          motor         5               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// topLeft              motor         1               
-// backLeft           motor         2               
-// topRight             motor         9               
-// backRight          motor         10              
-// intakeLeft           motor         4               
-// indexer         motor         6               
-// shooter           motor         3               
-// Controller1          controller                    
-// intakeRight          motor         5               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// topLeft              motor         1               
-// backLeft           motor         2               
-// topRight             motor         21              
-// backRight          motor         10              
-// intakeLeft           motor         4               
-// indexer         motor         6               
-// shooter           motor         3               
-// Controller1          controller                    
-// intakeRight          motor         5               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// topLeft              motor         12              
-// backLeft           motor         2               
-// topRight             motor         21              
-// backRight          motor         10              
-// intakeLeft           motor         4               
-// indexer         motor         6               
-// shooter           motor         3               
-// Controller1          controller                    
-// intakeRight          motor         5               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// topLeft              motor         12              
-// backLeft           motor         2               
-// topRight             motor         21              
-// backRight          motor         11              
-// intakeLeft           motor         4               
-// indexer         motor         6               
-// shooter           motor         3               
-// Controller1          controller                    
-// intakeRight          motor         5               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// topLeft              motor         12              
-// backLeft           motor         2               
-// topRight             motor         21              
-// backRight          motor         11              
-// intakeLeft           motor         4               
-// indexer         motor         7               
-// shooter           motor         3               
-// Controller1          controller                    
-// intakeRight          motor         5               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// topLeft              motor         12              
-// backLeft           motor         2               
-// topRight             motor         21              
-// backRight          motor         11              
-// intakeLeft           motor         4               
-// indexer         motor         7               
-// shooter           motor         8               
-// Controller1          controller                    
-// intakeRight          motor         5               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// topLeft              motor         12              
-// backLeft           motor         2               
-// topRight             motor         3               
-// backRight          motor         11              
-// intakeLeft           motor         4               
-// indexer         motor         7               
-// shooter           motor         8               
-// Controller1          controller                    
-// intakeRight          motor         5               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// topLeft              motor         12              
-// backLeft           motor         2               
-// topRight             motor         3               
-// backRight          motor         11              
-// intakeLeft           motor         4               
-// indexer         motor         7               
-// shooter           motor         8               
-// Controller1          controller                    
-// intakeRight          motor         5               
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// topLeft              motor         12              
-// backLeft           motor         2               
-// topRight             motor         3               
-// backRight          motor         11              
-// intakeLeft           motor         4               
-// indexer         motor         7               
-// shooter           motor         8               
-// Controller1          controller                    
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// topLeft              motor         12              
-// backLeft           motor         2               
-// topRight             motor         3               
-// backRight          motor         11              
-// intakeLeft           motor         5               
-// indexer         motor         7               
-// shooter           motor         8               
-// Controller1          controller                    
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// topLeft              motor         12              
-// backLeft           motor         2               
-// topRight             motor         3               
-// backRight          motor         11              
-// intakeLeft           motor         5               
-// intakeRight          motor         4               
-// indexer         motor         7               
-// shooter           motor         8               
-// Controller1          controller                    
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// topLeft              motor         12              
-// backLeft           motor         2               
-// topRight             motor         3               
-// backRight          motor         11              
-// intakeLeft           motor         5               
-// intakeRight          motor         6               
-// indexer         motor         7               
-// shooter           motor         8               
-// Controller1          controller                    
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// topLeft              motor         12              
-// backLeft           motor         2               
-// topRight             motor         3               
-// backRight          motor         11              
-// intakeLeft           motor         5               
-// intakeRight          motor         6               
-// indexer         motor         7               
-// flywheel             motor         8               
-// Controller1          controller                    
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// topLeft              motor         1               
-// backLeft           motor         2               
-// topRight             motor         3               
-// backRight          motor         11              
-// intakeLeft           motor         5               
-// intakeRight          motor         6               
-// indexer         motor         7               
-// flywheel             motor         8               
-// Controller1          controller                    
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// topLeft              motor         1               
-// backLeft           motor         2               
-// topRight             motor         3               
-// backRight          motor         4               
-// intakeLeft           motor         5               
-// intakeRight          motor         6               
-// indexer         motor         7               
-// flywheel             motor         8               
-// Controller1          controller                    
-// ---- END VEXCODE CONFIGURED DEVICES ----
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// topLeft              motor         1               
 // backLeft           motor         2               
 // topRight             motor         3               
 // backRight          motor         4               
@@ -285,9 +14,9 @@
 /*----------------------------------------------------------------------------*/
 /*                                                                            */
 /*    Module:       main.cpp                                                  */
-/*    Author:       Adam Xu, Shafin Haque                                     */
+/*    Author:       Adam Xu (adx59), Shafin Haque (ShafinH)                   */
 /*    Created:      Thu Sep 26 2019                                           */
-/*    Description:  53343A Comp code                                          */
+/*    Description:  53343A comp / skills code                                 */
 /*                                                                            */
 /*----------------------------------------------------------------------------*/
  
@@ -310,13 +39,13 @@ double INCH_MULT = 28;
 int intakeSpeed = 100;
 double nja_md = 1;
 
-int CUSTOM = 0;
-// function, p1, p2
-double CUSTOM_CONFIG[3] = {0, 100, 0};
-std::string CUSTOM_NAME[6] = {"V", "T", "A", "I", "S", "C"}; 
+int MENU_MODE = 0;
+int SELECTED_AUTON = 0;
+std::string AUTON_CODES[8] = {"R1", "R2", "R3", "L1", "L2", "L3", "S", "CUSTOM"};
 
-int SELECTED_AUTON = 5;
-bool AUTON_LOCKED = false;
+double ROUTINE[5][3] = {{0, 100, 0}, {-1, 100, 0}, {-1, 100, 0}, {-1, 100, 0}, {-1, 100, 0}};
+int CRT = 0;
+std::string CUSTOM_NAME[6] = {"V", "T", "A", "I", "S", "C"}; 
  
 void vertical(double v, double dist) {
   topLeft.rotateFor(dist * INCH_MULT, deg, v, velocityUnits::pct, false);
@@ -360,7 +89,7 @@ void haltIntake() {
 }
 
 void shoot (double v) { 
-  shooter.spin(fwd, v, pct); 
+  shooter.spin(reverse, v, pct); 
 }
 
 void haltShoot () { 
@@ -371,7 +100,7 @@ void cycle (double v) {
   indexer.spin(reverse, v, pct);
   intakeLeft.spin(reverse, v, pct);
   intakeRight.spin(reverse, v, pct);
-  shooter.spin(fwd, v, pct);
+  shooter.spin(reverse, v, pct);
 }
 
 void haltCycle () {
@@ -396,60 +125,87 @@ void deploy(){
 
 void selector () {
   // inputs
-  if (!AUTON_LOCKED) {
-    if (Controller1.ButtonUp.pressing() && SELECTED_AUTON < 8) {
+  if (MENU_MODE == 0) {
+    if (Controller1.ButtonRight.pressing() && SELECTED_AUTON < 6) {
       SELECTED_AUTON++;
     } 
 
-    if (Controller1.ButtonDown.pressing() && SELECTED_AUTON > 1) {
+    if (Controller1.ButtonLeft.pressing() && SELECTED_AUTON > 0) {
       SELECTED_AUTON--;
     } 
 
     if (Controller1.ButtonY.pressing()) {
-      CUSTOM = 1;
+      MENU_MODE = 1;
+      SELECTED_AUTON = 7;
       Controller1.rumble("...");
     }
+  } else if (MENU_MODE == 1) {
+    ROUTINE[CRT][1] += 0.01 * (double) Controller1.Axis3.position(pct);
+    ROUTINE[CRT][2] += 0.01 * (double) Controller1.Axis2.position(pct);
+    ROUTINE[CRT][1] = round(10 * ROUTINE[CRT][1])/10; ROUTINE[CRT][2] = round(10 * ROUTINE[CRT][2])/10;
 
-    if (Controller1.ButtonA.pressing()) {
-      AUTON_LOCKED = true;
+    if (Controller1.ButtonRight.pressing() && ROUTINE[CRT][0] < 5) {
+      ROUTINE[CRT][0]++;
+    }
+    if (Controller1.ButtonLeft.pressing() && ROUTINE[CRT][0] > 0) {
+      ROUTINE[CRT][0]--;
+    }
+
+    if (Controller1.ButtonUp.pressing() && CRT < 4) {
+      ROUTINE[CRT+1][0] = ROUTINE[CRT+1][0] == -1 ? 0 : ROUTINE[CRT+1][0];
+      CRT++;
+    } 
+    else if (Controller1.ButtonDown.pressing() && CRT > 0) {
+      CRT--;
+    }
+  }
+
+  if (Controller1.ButtonA.pressing()) {
+      MENU_MODE = 2;
       Controller1.rumble(".");
-    }
+  }
+}
 
-    // custom only joystick manip
-    if (CUSTOM == 1) {
-      CUSTOM_CONFIG[1] += 0.01 * (double) Controller1.Axis3.position(pct);
-      CUSTOM_CONFIG[2] += 0.01 * (double) Controller1.Axis2.position(pct);
-      CUSTOM_CONFIG[1] = round(10 * CUSTOM_CONFIG[1])/10; CUSTOM_CONFIG[2] = round(10 * CUSTOM_CONFIG[2])/10;
+void ctrlRender () {
+  Controller1.Screen.clearScreen();
+  if (MENU_MODE == 0) {
+    std::stringstream SelectorText[2];
+    SelectorText[0] << "Battery: " << Brain.Battery.capacity() << "\%"; 
+    SelectorText[1] << "Auton: " << AUTON_CODES[SELECTED_AUTON] << ""; 
 
-      if (Controller1.ButtonRight.pressing() && CUSTOM_CONFIG[0] < 6) {
-        CUSTOM_CONFIG[0]++;
-      }
-      if (Controller1.ButtonLeft.pressing() && CUSTOM_CONFIG[0] > 0) {
-        CUSTOM_CONFIG[0]--;
-      }
-    }
+    Controller1.Screen.setCursor(1, 1);
+    Controller1.Screen.print("- SELECT -");
+    Controller1.Screen.setCursor(3, 1);
+    Controller1.Screen.print(SelectorText[0].str().c_str());
+    Controller1.Screen.setCursor(2, 1);
+    Controller1.Screen.print(SelectorText[1].str().c_str());
+  } else if (MENU_MODE == 1) {
+    std::stringstream CustomText[3];
+    CustomText[0] << "= Action #" << CRT+1 << " =";
+    CustomText[1] << "[" << CUSTOM_NAME[(int) ROUTINE[CRT][0]] << "] / V: " << ROUTINE[CRT][1] << " / D: " << ROUTINE[CRT][2];
+    for (int i = 0; i < 5; i++) { CustomText[2] << CUSTOM_NAME[(int) ROUTINE[i][0]] << "; "; } 
 
-    // render
-    if (CUSTOM == 1) {
-      std::stringstream CustomText[3];
-      CustomText[0] << "{" << CUSTOM_NAME[(int) CUSTOM_CONFIG[0]] << "}";
-      CustomText[1] << "V: " << CUSTOM_CONFIG[1];
-      CustomText[2] << "D: " << CUSTOM_CONFIG[2]; 
+    Controller1.Screen.setCursor(1, 1);
+    Controller1.Screen.print(CustomText[0].str().c_str());
+    Controller1.Screen.setCursor(2, 1);
+    Controller1.Screen.print(CustomText[1].str().c_str());
+    Controller1.Screen.setCursor(3, 1);
+    Controller1.Screen.print(CustomText[2].str().c_str());
+  } else if (MENU_MODE == 2) {
+    std::stringstream top;
+    std::stringstream bottom;
+    top << "Temp: " << round(topLeft.temperature(temperatureUnits::fahrenheit));
+    bottom << "Auton: " << AUTON_CODES[SELECTED_AUTON];
 
-      Controller1.Screen.clearScreen();
-      Controller1.Screen.setCursor(1, 1);
-      Controller1.Screen.print(CustomText[0].str().c_str());
-      Controller1.Screen.setCursor(2, 1);
-      Controller1.Screen.print(CustomText[1].str().c_str());
+    Controller1.Screen.setCursor(1, 1);
+    Controller1.Screen.print(top.str().c_str());
+    Controller1.Screen.newLine();
+    Controller1.Screen.print(bottom.str().c_str());
+    Controller1.Screen.newLine();
+
+    if (nja_md == 0.3) {
       Controller1.Screen.setCursor(3, 1);
-      Controller1.Screen.print(CustomText[2].str().c_str());
-    } else {
-      std::stringstream SelectorText;
-      SelectorText << "(" << Brain.Battery.capacity() << "\%)" << " [AUT" << SELECTED_AUTON << "]"; 
-  
-      Controller1.Screen.clearScreen();
-      Controller1.Screen.setCursor(1, 1);
-      Controller1.Screen.print(SelectorText.str().c_str());
+      Controller1.Screen.print("[NINJA]");
     }
   }
 }
@@ -460,32 +216,34 @@ void pre_auton(void) {
 }
  
 void autonomous(void) {
-  if (CUSTOM == 1) {
-    if (CUSTOM_CONFIG[0] == 0) {
-      vertical(CUSTOM_CONFIG[1], CUSTOM_CONFIG[2]);
-    } else if (CUSTOM_CONFIG[0] == 1) {
-      turn90(CUSTOM_CONFIG[1], CUSTOM_CONFIG[2]);
-    } else if (CUSTOM_CONFIG[0] == 2) {
-      arms(CUSTOM_CONFIG[1]);
-      wait(CUSTOM_CONFIG[2], sec);
-      haltArms();
-    } else if (CUSTOM_CONFIG[0] == 3) {
-      intake(CUSTOM_CONFIG[1]);
-      wait(CUSTOM_CONFIG[2], sec);
-      haltIntake();
-    } else if (CUSTOM_CONFIG[0] == 4) {
-      shoot(CUSTOM_CONFIG[1]);
-      wait(CUSTOM_CONFIG[2], sec);
-      haltShoot();
-    } else if (CUSTOM_CONFIG[0] == 5) {
-      cycle(CUSTOM_CONFIG[1]);
-      wait(CUSTOM_CONFIG[2], sec);
-      haltCycle();
+  if (SELECTED_AUTON == 7) {
+    for (int n = 0; n < 5; n++) {
+      if (ROUTINE[n][0] == 0) {
+        vertical(ROUTINE[n][1], ROUTINE[n][2]);
+      } else if (ROUTINE[n][0] == 1) {
+        turn90(ROUTINE[n][1], ROUTINE[n][2]);
+      } else if (ROUTINE[n][0] == 2) {
+        arms(ROUTINE[n][1]);
+        wait(ROUTINE[n][2], sec);
+        haltArms();
+      } else if (ROUTINE[n][0] == 3) {
+        intake(ROUTINE[n][1]);
+        wait(ROUTINE[n][2], sec);
+        haltIntake();
+      } else if (ROUTINE[n][0] == 4) {
+        shoot(ROUTINE[n][1]);
+        wait(ROUTINE[n][2], sec);
+        haltShoot();
+      } else if (ROUTINE[n][0] == 5) {
+        cycle(ROUTINE[n][1]);
+        wait(ROUTINE[n][2], sec);
+        haltCycle();
+      }
     }
     return;
   }
 
-  if (SELECTED_AUTON == 1) {
+  if (SELECTED_AUTON == 0) {
     // Right side, 1 goal
     deploy();
 
@@ -500,17 +258,17 @@ void autonomous(void) {
     cycle(100);
     wait(2, sec);
     haltCycle();
-  } else if (SELECTED_AUTON == 2) {
+  } else if (SELECTED_AUTON == 1) {
   
-  } else if (SELECTED_AUTON == 3) {
+  } else if (SELECTED_AUTON == 2) {
 
-  } else if (SELECTED_AUTON == 4) {
+  } else if (SELECTED_AUTON == 3) {
    
+  } else if (SELECTED_AUTON == 4) {
+
   } else if (SELECTED_AUTON == 5) {
 
-  } else if (SELECTED_AUTON == 6) {
-
-  } else if (SELECTED_AUTON == 7) { 
+  } else if (SELECTED_AUTON == 6) { 
     /*
     * Skills Auton
     * Four-goal, encoder, some wait-time utilized
@@ -637,7 +395,7 @@ void usercontrol(void) {
   backRight.setBrake(brake);
 
   while (true) {
-    if (AUTON_LOCKED) {
+    if (MENU_MODE == 2) {
       // drive train
       topLeft.spin(fwd, nja_md*(Controller1.Axis3.position(pct) + 0.7*Controller1.Axis1.position()), pct);
       topRight.spin(fwd, nja_md*(Controller1.Axis3.position(pct) - 0.7*Controller1.Axis1.position()), pct);
@@ -662,9 +420,9 @@ void usercontrol(void) {
       shooter.stop(brake);
     }
 
-    if (Controller1.ButtonLeft.pressing()) {
-      AUTON_LOCKED = false;
-      CUSTOM = 0;
+    if (Controller1.ButtonLeft.pressing() && Controller1.ButtonDown.pressing()) {
+      MENU_MODE = 0;
+      SELECTED_AUTON = 0;
     }
 
     if (Controller1.ButtonB.pressing()) {
@@ -692,27 +450,9 @@ int main() {
   
   // Prevent main from exiting with an infinite loop.
   while (true) {
-    selector();
-    
-    if (AUTON_LOCKED) {
-      std::stringstream top;
-      std::stringstream bottom;
-      top << "[" << round(topLeft.temperature(temperatureUnits::fahrenheit)) << 
-        "] [" << round(topRight.temperature(temperatureUnits::fahrenheit)) << "]";
-      bottom << "[" << round(backLeft.temperature(temperatureUnits::fahrenheit)) << 
-        "] [" << round(backRight.temperature(temperatureUnits::fahrenheit)) << "]";
-
-      Controller1.Screen.clearScreen();
-      Controller1.Screen.setCursor(1, 1);
-      Controller1.Screen.print(top.str().c_str());
-      Controller1.Screen.newLine();
-      Controller1.Screen.print(bottom.str().c_str());
-      Controller1.Screen.newLine();
-
-      if (nja_md == 0.3) {
-        Controller1.Screen.setCursor(3, 1);
-        Controller1.Screen.print("[NINJA]");
-      }
+    if (MENU_MODE != 2) {
+      selector();
     }
+    ctrlRender();
   }
 }
