@@ -62,10 +62,10 @@ void avertical (double v, double dist) {
 }
  
 void turn90(double v, double dir) {
-  topLeft.rotateFor(dir * 400, deg, v, velocityUnits::pct, false);
-  topRight.rotateFor(dir * -400, deg, v, velocityUnits::pct, false);
-  backLeft.rotateFor(dir * 400, deg, v, velocityUnits::pct, false);
-  backRight.rotateFor(dir * -400, deg, v, velocityUnits::pct, true);
+  topLeft.rotateFor(dir * 291.1, deg, v, velocityUnits::pct, false);
+  topRight.rotateFor(dir * -291.1, deg, v, velocityUnits::pct, false);
+  backLeft.rotateFor(dir * 291.1, deg, v, velocityUnits::pct, false);
+  backRight.rotateFor(dir * -291.1, deg, v, velocityUnits::pct, true);
 }
 
 void arms (double v) {
@@ -74,6 +74,14 @@ void arms (double v) {
 
 void haltArms () { 
   intakeLeft.stop(); intakeRight.stop(); 
+}
+
+void rollers (double v) {
+  indexer.spin(directionType::rev, v, percentUnits::pct);
+}
+
+void haltRollers () {
+  indexer.stop();
 }
 
 void intake(double v) {
@@ -92,7 +100,7 @@ void shoot (double v) {
   shooter.spin(reverse, v, pct); 
 }
 
-void haltShoot () { 
+void haltShoot () {
   shooter.stop(); 
 }
 
@@ -118,9 +126,9 @@ void flipout(){
 }
 
 void deploy(){
-  indexer.spin(fwd, 25, percentUnits:: pct);
-  wait(0.75, sec);
-  indexer.stop();
+  shoot(30);
+  wait(0.25, sec);
+  haltShoot();
 }
 
 void selector () {
@@ -216,6 +224,11 @@ void pre_auton(void) {
 }
  
 void autonomous(void) {
+  topLeft.setBrake(brake);
+  topRight.setBrake(brake); 
+  backLeft.setBrake(brake);
+  backRight.setBrake(brake);
+
   if (SELECTED_AUTON == 7) {
     for (int n = 0; n < 5; n++) {
       if (ROUTINE[n][0] == 0) {
@@ -247,25 +260,156 @@ void autonomous(void) {
     // Right side, 1 goal
     deploy();
 
-    vertical(70, 18);
-    wait(0.3, sec);
+    vertical(30, 23);
+    wait(0.5, sec);
     turn90(100, 1.5);
 
     arms(100);
-    vertical(20, 12);
+    vertical(30, 18);
+    rollers(100);
+    wait(0.5, sec);
+    haltRollers();
     haltArms(); 
+    vertical(30, 6);
 
-    cycle(100);
-    wait(2, sec);
+    // 2b no preload
+    arms(100);
+    rollers(100);
+    shoot(100);
+    wait(0.5, sec);
+    haltArms(); // avoid intaking last ball
+    wait(1.2, sec); // shoot red ball
     haltCycle();
+
+    // take last ball
+    arms(100);
+    wait(0.6, sec);
+    haltArms();
+
+    vertical(30, -12);
   } else if (SELECTED_AUTON == 1) {
-  
+    // Right side, 2 goal
+    deploy();
+
+    vertical(30, 24);
+    wait(0.5, sec);
+    turn90(100, 1.5);
+
+    // intake gball
+    arms(100);
+    vertical(50, 21);
+    haltArms(); 
+    vertical(25, 3.5);
+
+    // shoot 1 ball in
+    rollers(100);
+    shoot(100);
+    wait(0.7, sec);
+    haltCycle();
+    wait(0.4, sec);
+
+    // back up and position for second goal
+    vertical(30, -13.5);
+    wait(0.7, sec);
+    turn90(100, 1.55);
+    wait(0.4, sec);
+
+    vertical(50, 45.5);
+    turn90(100, -1.05);
+
+    // move in
+    vertical(50, 8);
+
+    // cyc to obtain g2b
+    arms(100);
+    rollers(100);
+    shoot(100);
+    wait(0.4, sec);
+    haltArms();
+    wait(1, sec);
+    haltCycle();
+
+    // move out, take ob
+    arms(100);
+    wait(0.6, sec);
+    haltArms();
+    vertical(30, -10);
   } else if (SELECTED_AUTON == 2) {
 
   } else if (SELECTED_AUTON == 3) {
-   
-  } else if (SELECTED_AUTON == 4) {
+    // left side, 1 goal
+    deploy();
 
+    vertical(30, 21);
+    wait(0.5, sec);
+    turn90(100, -1.53);
+
+    // stop and intake gball
+    arms(100);
+    vertical(30, 18);
+    rollers(100);
+    wait(0.5, sec);
+    haltRollers();
+    haltArms(); 
+
+    // move in
+    vertical(30, 6);
+
+    // 2b no preload
+    arms(100);
+    rollers(100);
+    shoot(100);
+    wait(0.5, sec);
+    haltArms(); // avoid intaking last ball
+    wait(1.2, sec); // shoot red ball
+    haltCycle();
+
+    // take last ball
+    arms(100);
+    wait(0.6, sec);
+    haltArms();
+
+    vertical(30, -12);
+  } else if (SELECTED_AUTON == 4) {
+    // left side, 2 goal
+    deploy();
+
+    vertical(30, 21);
+    wait(0.5, sec);
+    turn90(100, -1.53);
+
+    // take in outside gball
+    arms(100);
+    vertical(50, 21);
+    haltArms(); 
+    vertical(25, 3);
+
+    rollers(100);
+    shoot(100);
+    wait(0.7, sec);
+    haltCycle();
+    wait(0.4, sec);
+
+    // move to second goal
+    vertical(30, -13.5);
+    wait(0.7, sec);
+    turn90(100, -1.55);
+    wait(0.3, sec);
+    vertical(50, 46);
+    turn90(100, 1.05);
+
+    // move in
+    vertical(50, 9);
+
+    // shoot 2b second goal
+    cycle(100);
+    wait(0.7, sec);
+    haltArms();
+    wait(0.9, sec);
+    haltCycle();
+
+    wait(0.5, sec);
+    vertical(30, -10);
   } else if (SELECTED_AUTON == 5) {
 
   } else if (SELECTED_AUTON == 6) { 
@@ -413,6 +557,12 @@ void usercontrol(void) {
       intakeRight.spin(fwd, intakeSpeed, pct);
       indexer.spin(fwd, intakeSpeed, pct);
       shooter.spin(fwd, intakeSpeed, pct);
+    } else if (Controller1.ButtonR2.pressing()) {
+      intakeLeft.spin(fwd, intakeSpeed, pct);
+      intakeRight.spin(fwd, intakeSpeed, pct);
+    } else if (Controller1.ButtonL2.pressing()) {
+      intakeLeft.spin(reverse, intakeSpeed, pct);
+      intakeRight.spin(reverse, intakeSpeed, pct);
     } else {
       intakeLeft.stop(brake);
       intakeRight.stop(brake);
@@ -426,12 +576,10 @@ void usercontrol(void) {
     }
 
     if (Controller1.ButtonB.pressing()) {
-      nja_md = 0.3;
-    } else {
-      nja_md = 1;
+      nja_md =  nja_md == 1.0 ? 0.3 : 1.0;
     }
 
-    if (Controller1.ButtonX.pressing()) {
+    if (Controller1.ButtonX.pressing() && Controller1.ButtonY.pressing()) {
       autonomous();
     }
   }
