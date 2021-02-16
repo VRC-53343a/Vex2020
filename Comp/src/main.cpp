@@ -376,13 +376,13 @@ void autonomous(void) {
 
     vertical(30, 21);
     wait(0.5, sec);
-    turn90(100, -1.53);
+    turn90(100, -1.55);
 
     // take in outside gball
     arms(100);
     vertical(50, 21);
     haltArms(); 
-    vertical(25, 3);
+    vertical(25, 1.48);
 
     rollers(100);
     shoot(100);
@@ -391,14 +391,20 @@ void autonomous(void) {
     wait(0.4, sec);
 
     // move to second goal
-    vertical(30, -13.5);
+    vertical(30, -17);
+    arms(100);
+    rollers(100);
+    wait(0.5, sec);
+    haltRollers();
+    haltArms();
     wait(0.7, sec);
-    turn90(100, -1.55);
+    turn90(100, -1.63);
     wait(0.3, sec);
-    vertical(50, 46);
-    turn90(100, 1.05);
+    vertical(50, 42);
+    turn90(100, 1);
 
     // move in
+    wait(0.3, sec);
     vertical(50, 9);
 
     // shoot 2b second goal
