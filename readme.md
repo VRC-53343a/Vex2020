@@ -1,4 +1,4 @@
-# [Vex2020-2021](vrc-53343a.github.io/website/)
+# [Vex2020-2021](https://vrc-53343a.github.io/Website)
 
 53343A's code for VEX VRC Change Up, 2020-2021
 
